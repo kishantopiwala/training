@@ -1,11 +1,17 @@
 const express = require('express');
 const routes = express.Router()
-const {home,submitform, registrationform,activationlink,activateaccount,setpassword, loginrender,authorization ,linkexpired, generatelink,login ,fprender} = require('./controller/controller')
+const {home,submitform, registrationform,activationlink,activateaccount,
+    setpassword, loginrender,authorization ,linkexpired, generatelink,
+    login ,fprender, dynamictable, evnetstable, kukucube, tictactoe,} = require('./controller/controller')
+
+const { webpage1, webpage2, webpage3 } = require('./controller/webpagecontroller')
+
 const bodyparser = require('body-parser');
 const cookieParser = require('cookie-parser');
 routes.use(bodyparser.json());
 routes.use(bodyparser.urlencoded({extended:true}));
 routes.use(cookieParser())
+
 routes.get('/login',loginrender)
 routes.get('/registration',registrationform)
 routes.post('/login',login)
@@ -18,6 +24,24 @@ routes.get('/checkactivationcode/:email?',activationlink);
 routes.post('/submitdetails',submitform);
 routes.get('/generatelink/:email',generatelink)
 routes.get('/forgetpassword/:email',fprender)
+
+//Dynamic Table Route 
+routes.use('/dynamictable',dynamictable)
+
+// events table route
+routes.use('/eventstable',evnetstable)
+
+// Kuku Cube Route
+routes.use('/kukucube',kukucube)
+
+// tic tac toe route
+routes.use('/tictactoe',tictactoe)
+
+// webpages routes 
+routes.use('/webpage1',webpage1)
+routes.use('/webpage2',webpage2)
+routes.use('/webpage3',webpage3)
+
 routes.use((req,res,next)=>{
     next()
 });

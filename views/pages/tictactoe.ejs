@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            height: 50%;
+            width: 30%;
+            margin: auto;
+            /* border: 1px solid black; */
+            border-radius: 15px;
+            background-color: white;
+        }
+
+        td {
+            width: 150px;
+            height: 100px;
+            border: 1px solid white;
+            /* border: 1px solid black; */
+        }
+
+        /* #col1,#col2,#col3,#col4,#col5,#col6{
+            border-bottom: 1px solid black;
+        }
+        #col1,#col4,#col4{
+            border-right: 1px solid black;
+        } 
+        #col2,#col5,#col8,#col7{
+            border-right: 1px solid black;
+        } */
+        .col {
+            border: 1px solid black;
+            border-radius: 15px;
+            text-align: center;
+            font-size: xx-large;
+        }
+
+        body {
+            background-color: rosybrown;
+        }
+    </style>
+</head>
+
+<body>
+    <div style="text-align: center;">
+        <h3>Kishan Topiwala</h3>
+        <h3>24DEV021</h3>
+        <h3></h3>
+
+        <div style="text-align: center;">
+        </div>
+    </div>
+    <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+        <table id="table">
+            <tr id="row1" name="row1" class="row1">
+                <td id="1" class="col" name="1"></td>
+                <td id="2" class="col" name="2"></td>
+                <td id="3" class="col" name="3"></td>
+            </tr>
+            <tr id="row2" name="row2" class="row2">
+                <td id="4" class="col" name="1"></td>
+                <td id="5" class="col" name="2"></td>
+                <td id="6" class="col" name="3"></td>
+            </tr>
+            <tr id="row3" name="row3" class="row3">
+                <td id="7" class="col" name="1"></td>
+                <td id="8" class="col" name="2"></td>
+                <td id="9" class="col" name="3"></td>
+            </tr>
+        </table>
+    </div>
+    <!-- <script src="index.js"></script> -->
+    <script>
+        let currentplayer = "X"
+        let Xwin = [];
+        let Owin = [];
+        var counter = 0;
+        let wins = [
+            [1,2,3],
+            [4,5,6],
+            [7,8,9],
+            [1,4,7],
+            [2,5,8],
+            [3,6,9],
+            [1,5,9],
+            [7,5,3]
+        ]
+        var cells = document.getElementsByClassName('col')
+
+        for (let i = 0; i < cells.length; i++) {
+            // console.log(typeof (i))
+            cells[i].addEventListener('click', fillcell)
+        }
+
+
+        function fillcell() {
+            var cell = event.target.id;
+            // console.log(typeof(cell));
+            if (currentplayer == "X") {
+                document.getElementById(cell).innerHTML = "X"
+                currentplayer = "O"
+                document.getElementById(cell).removeEventListener("click", fillcell)
+                Xwin.push(parseInt(cell))
+                // checkwin();
+            }
+            else {
+                document.getElementById(cell).innerHTML = "O"
+                currentplayer = "X"
+                document.getElementById(cell).removeEventListener("click", fillcell)
+                Owin.push( parseInt(cell))
+            }
+            counter++
+            checkwin();
+        }
+
+        function checkwin() {
+            // console.log(Xwin)
+            for (i = 0; i < wins.length; i++) {
+                wins[i][0]
+                if (Xwin.includes(wins[i][0]) && Xwin.includes(wins[i][1]) && Xwin.includes(wins[i][2])){
+                    // alert("Player X won")
+                    // console.log()
+                    alert("Player X won");
+                }
+                if(Owin.includes(wins[i][0]) && Owin.includes(wins[i][1]) && Owin.includes(wins[i][2])){
+                    alert("Player O won")
+                    // console.log("Player O won")
+                }
+                
+            }
+            if(counter == 9){
+                alert("draw")
+            }
+        }
+    </script>
+</body>
+
+</html>

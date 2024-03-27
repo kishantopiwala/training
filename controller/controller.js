@@ -2,8 +2,25 @@ const { con, asyncQuery } = require('../connection')
 const jwt = require('jsonwebtoken')
 const md5 = require('md5');
 require('dotenv').config();
+
 function home(req, res) {
     res.render('pages/home')
+}
+
+function evnetstable(req,res) {
+    res.render('pages/eventstable')
+}
+
+function dynamictable(req,res) {
+    res.render('pages/dynamictable')
+}
+
+function kukucube(req,res) {
+    res.render('pages/kukucube')
+}
+
+function tictactoe(req,res) {
+    res.render('pages/tictactoe')
 }
 
 function fprender(req, res) {
@@ -224,4 +241,6 @@ async function authorization(req, res, next) {
     }
 
 }
-module.exports = { home, submitform, registrationform, activationlink, activateaccount, authorization, setpassword, loginrender, linkexpired, generatelink, login, fprender }
+module.exports = { home, submitform, registrationform, activationlink, activateaccount,
+     authorization, setpassword, loginrender, linkexpired, generatelink, 
+     login, fprender,dynamictable,evnetstable,kukucube,tictactoe }

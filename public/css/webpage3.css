@@ -1,0 +1,710 @@
+:root {
+    --orange: #FC7F3A;
+    --tomato: #FC6868;
+    --yellow: #FFBB38;
+    --yellow2: #FFC80A;
+    --green: #389B48;
+    --green2: #64E379;
+    --black: #000000;
+    --white: #FFFFFF;
+    --sitebg: #F9F7EE;
+    --cardbg: #EBE9DE;
+    --blue: #458DC9;
+    --inter: 'Inter', sans-serif;
+    --ClashGrotesk: 'Clash Grotesk', 'san-serif';
+    --ribeye: "Ribeye", serif;
+    --sporting: 'Sporting Grotesque', san-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--sitebg);
+}
+
+.container {
+    max-width: 1170px;
+    margin: 0 auto;
+}
+
+/* header */
+header>.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px;
+}
+
+.nav {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.navbutton {
+    padding: 10px 16px 10px 16px;
+    background-color: var(--black);
+    border: 1px solid var(--black);
+    color: var(--white);
+    font-size: 15px;
+    font-weight: 500;
+    font-size: var(--inter);
+    border-radius: 10px;
+    line-height: 16px;
+}
+
+.navbutton>img {
+    vertical-align: middle;
+}
+
+.navlink>a {
+    text-decoration: none;
+    color: var(--black);
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 16px;
+    /* font-family: var(--inter); */
+}
+
+/* section 1 */
+.section1>.container {
+    margin-top: 100px;
+    height: 500px;
+    display: flex;
+}
+
+.herotext {
+    width: 50%;
+    /* padding: 20px 20px 20px 0; */
+    display: flex;
+    flex-direction: column;
+    /* gap: 10px; */
+    justify-content: space-evenly;
+}
+
+.herodesign {
+    width: 50%;
+    position: relative;
+}
+
+.herotext>h3 {
+    font-family: var(--ClashGrotesk);
+    font-size: 17px;
+    font-weight: 500;
+    list-style: 21;
+}
+
+.herotext>h3>img {
+    height: 36px;
+    width: 36px;
+    vertical-align: middle;
+}
+
+.h1 {
+    padding: 10px 10px 10px 0px;
+    align-items: left;
+    font-family: var(--inter);
+    font-size: 64px;
+    line-height: 90px;
+    font-weight: 600;
+}
+
+.herotext>p {
+    width: 80%;
+    font-family: var(--inter);
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 30px;
+    padding: 10px 10px 10px 0;
+}
+
+.herotext>form {
+    display: flex;
+    border: 1px solid var(--black);
+    box-shadow: 4px 4px;
+    width: 80%;
+}
+
+.herotext>form>input[type="text"] {
+    width: 60%;
+    border: 2px solid var(--black);
+    border-radius: 3px, 0px, 0px, 3px;
+    padding: 15px;
+}
+
+.herotext>form>input[type="submit"] {
+    width: 40%;
+    border: 2px solid var(--black);
+    background-color: var(--yellow);
+    color: var(--black);
+    font-size: 16px;
+    font-family: var(--inter);
+    font-weight: 600;
+    line-height: 20px;
+    padding: 15px;
+
+}
+
+.openaccount {
+    margin-top: 70px;
+    width: 40%;
+    font-family: var(--sporting);
+    font-size: 13px;
+    line-height: 21.48px;
+    font-weight: 400;
+    background-color: var(--yellow);
+    border: 1px solid var(--orange);
+    opacity: 20%;
+    padding: 20px;
+    border-radius: 15px;
+    color: var(--black);
+}
+
+.webdesign {
+    position: absolute;
+    height: 200px;
+    width: 200px;
+    background-color: var(--orange);
+    border-radius: 100%;
+    top: 0;
+    right: 0;
+    z-index: 1;
+}
+
+.webdesign>div {
+    width: 180px;
+    height: 180px;
+    position: relative;
+}
+
+.webdesign>div>img {
+    position: absolute;
+    top: 15px;
+    right: 10px;
+    transform: rotate(15deg);
+}
+
+.webdesign>div>h3 {
+    position: absolute;
+    font-family: var(--ribeye);
+    font-size: 30px;
+    line-height: 46px;
+    font-weight: 400;
+    font-style: normal;
+    bottom: 20px;
+    left: 50px
+}
+
+.socialmedia {
+    position: absolute;
+    background-color: var(--yellow);
+    width: 200px;
+    height: 200px;
+    border-radius: 0 50% 50% 0;
+    top: 140px;
+    right: 100px;
+}
+
+.socialmedia>div {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.socialmedia>div>img {
+    position: absolute;
+    height: 61px;
+    width: 69px;
+    top: 10px;
+    left: 10px;
+}
+
+.socialmedia>div>h3 {
+    position: absolute;
+    font-size: 30px;
+    font-family: var(--ribeye);
+    font-weight: 400;
+    list-style: 46px;
+    top: 80px;
+    left: 50px;
+}
+
+.uxdesign {
+    position: absolute;
+    height: 200px;
+    width: 200px;
+    background-color: var(--green);
+    bottom: 0px;
+    right: 240px;
+}
+
+.uxdesign>div {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.uxdesign>div>img {
+    position: absolute;
+    height: 75px;
+    width: 66px;
+    right: 50px;
+    bottom: 10px;
+}
+
+.uxdesign>div>h3 {
+    color: var(--white);
+    position: absolute;
+    font-size: 33px;
+    font-family: var(--ribeye);
+    font-weight: 400;
+    list-style: 46px;
+    top: 20px;
+    left: 20px;
+}
+
+.new {
+    position: absolute;
+    right: 40px;
+    bottom: 50px;
+}
+
+.marquee {
+    margin: 100px auto;
+    padding: 10px;
+
+}
+
+.marq {
+    max-width: 1170px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: 0 auto;
+}
+
+.marq div {
+    display: flex;
+    align-items: center;
+    color: var(--white);
+}
+
+.man {
+    height: 87px;
+    width: 90px;
+}
+
+.marq >h3 {
+    font-family: var(--sporting);
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 24px;
+    margin: 0 20px;
+}
+
+.line4 {
+    transform: rotate(270deg);
+}
+
+/* section2 */
+
+.section2>.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 100px;
+}
+
+.service {
+    width: 40%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.service>button {
+    width: max-content;
+    font-size: 17px;
+    line-height: 17px;
+    font-weight: 600;
+    font-family: var(--inter);
+    color: var(--white);
+    background-color: var(--orange);
+    border: 1px solid var(--orange);
+    padding: 10px;
+    border-radius: 25px;
+}
+
+.service>p {
+    font-family: var(--inter);
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 30px;
+    width: 65%;
+    text-align: center;
+}
+
+.service>h2 {
+    font-family: var(--inter);
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 40px;
+    text-align: center;
+}
+
+.servicerow {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 20px;
+}
+
+.servicecol {
+    width: calc(100% / 3);
+    border-radius: 10px;
+}
+
+.card {
+    height: 100%;
+    background-color: var(--cardbg);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    align-items: center;
+    gap: 20px;
+}
+
+.servicep {
+    margin-top: 20px;
+    font-family: var(--inter);
+    font-size: 16px;
+    line-height: 30px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.serviceh3 {
+    width: 65%;
+    font-family: var(--inter);
+    font-size: 28px;
+    line-height: 36px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.button {
+    font-family: var(--sporting);
+    font-size: 16px;
+    line-height: 16px;
+    font-weight: 700;
+    padding: 15px;
+    border: 1px solid var(--black);
+    border-radius: 5px;
+    box-shadow: 3px 3px var(--black);
+}
+
+.button>img {
+    vertical-align: middle;
+}
+
+/* section 3 */
+.section3>.container {
+    margin: 100px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 100px;
+}
+
+.workrow {
+    position: relative;
+    display: flex;
+    gap: 20px;
+}
+
+.workdes {
+    text-align: left;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.depart {
+    width: 30%;
+    border: 1px solid var(--black);
+    background-color: transparent;
+    border-radius: 20px;
+    text-align: center;
+    padding: 2px;
+}
+
+.workdes>h5 {
+    font-family: var(--inter);
+    font-size: 20px;
+    line-height: 17px;
+    font-weight: 800;
+}
+
+.workdes>p {
+    font-family: var(--inter);
+    font-size: 17px;
+    line-height: 15px;
+    font-weight: 400;
+}
+
+.readmore {
+    width: fit-content;
+    border-bottom: 1px solid var(--black);
+}
+
+.readmore>a {
+    font-family: var(--inter);
+    font-size: 16px;
+    line-height: 13px;
+    font-weight: 400;
+    padding: 5xp;
+    text-decoration: none;
+    color: var(--black);
+}
+
+.readmore>img {
+    /* padding: px; */
+    width: 10px;
+    height: 10px;
+    vertical-align: middle;
+}
+
+.workrow>.button {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: var(--yellow);
+}
+
+.section4>.container {
+    margin: 100px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 100px;
+}
+
+.card>hr {
+    width: 90%;
+}
+
+.section4>.container>.servicerow>.servicecol>.button {
+    width: 90%;
+    box-shadow: 0px 0px;
+    border: 0px;
+}
+
+.section4>.container>.servicerow>.servicecol>.button>img {
+    padding: 0 3px;
+}
+
+.featureslist {
+    align-items: left;
+}
+
+.features {
+    padding: 5px;
+}
+
+.features>i {
+    padding: 10px;
+}
+
+.pricecard button {
+    border: 0;
+    box-shadow: 0 0;
+}
+
+.pricecard:hover {
+
+    background-color: var(--black);
+    color: var(--white);
+    transform: translateY(-15px);
+}
+
+.pricecard:hover button {
+    box-shadow: 5px 5px var(--white);
+}
+
+/* section 5 */
+.section5 {
+    background-color: var(--green2);
+}
+
+.section5>.container {
+    display: flex;
+    padding: 50px;
+    gap: 50px;
+    align-items: center;
+    position: relative;
+    
+}
+
+.contents{
+    display: flex;
+    padding: 50px;
+    gap: 50px;
+    align-items: center;
+    overflow: hidden;
+}
+/* .nextbutton{
+    position: absolute;
+    right:-10px;
+} */
+.content{
+    min-width: 100%;
+    display: flex;
+    padding: 50px;
+    gap: 50px;
+    align-items: center;
+    position: relative;
+}
+.userimage {
+    border-radius: 50% 50% 0px 0px;
+    border: 2px solid var(--black);
+}
+
+.section5 .text1 {
+    font-family: var(--inter);
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 36px;
+}
+
+.section5 .text2 {
+    margin-top: 20px;
+    font-family: var(--inter);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 28px;
+}
+
+.userlink {
+    position: absolute;
+    padding: 15px 20px;
+    display: flex;
+    background-color: var(--yellow);
+    border-radius: 30px;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    border: 1px solid var(--black);
+    bottom: 25px;
+    left: 150px;
+}
+
+.userlink>p {
+
+    font-family: var(--inter);
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.arrowtop {
+    border: 1px solid var(--black);
+    background-color: var(--green);
+    padding: 5px;
+    border-radius: 100%;
+    box-shadow: 3px 3px;
+}
+
+.section6 >.container {
+    align-items: start;
+}
+.section6 .service{
+    align-items: start;
+}
+.section6 .service  h2{
+    text-align: left;
+}
+
+/* section 7 */
+.section7 .container{
+    padding-top: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.suscribform{
+    width: 80%;
+    font-family: var(--inter);
+}
+.sforminput{
+    font-weight: 700;
+    font-size: medium;
+    padding: 20px;
+    width: 70%;
+    background-color: transparent;
+    border: 0px;
+    border-bottom: 1px solid var(--black);
+}
+.suscribtext p{
+    font-size: 17px;
+    font-family: var(--inter);
+    margin:10px 0;
+}
+.subutton{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width:77%;
+    border-bottom: 1px solid var(--black);
+}
+
+.subutton input{
+    border: 0;
+}
+.subutton img{
+    width: 27px;
+    height: 22px;
+}
+.bookcall{
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid var(--black);
+    background-color: transparent;
+}
+.section7 .marquee{
+    margin-bottom: 0px;
+}
+.marq2 div{
+    padding: 20px;
+    gap: 20px;
+    align-items: center;
+}
+footer > .container{
+    padding: 50px;
+}
+.logo{
+    border-bottom: 1px solid var(--black);
+    padding-bottom:20px;
+}
+.footerrow{
+    display: flex;
+    justify-content: space-between;
+    margin:50px 0 30px 0;
+}
+.footercol > p{
+    margin:10px;
+    font-family: var(--inter);
+}
+.porduct{
+    font-size: 24px;
+    font-family: var(--inter);
+    padding: 10px;
+}
+.terms{
+    display: flex;
+    justify-content: space-between;
+}

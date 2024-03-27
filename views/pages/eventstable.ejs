@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            width: 50%;
+            height: 50%;
+            margin: 0 auto;
+
+        }
+
+        td {
+            height: 50px;
+            width: 100px;
+            border: 1px solid black;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <table id="table" >
+        <tr>
+            <td onclick="alert('button pressed')">Click </td>
+            <td onclick="fullscreen()">Fullscreen</td>
+            <td onclick="exitfullscreen()"> Exit Fullscreen</td>
+            <td id="email"><input type="text" id="email" onfocus="onfocus_()"> </td>
+            <td> <input type="text" id='b_year' onmouseenter="mouse_enter()" onmouseleave="mouse_leave1()"> </td>
+            <td> <input type="button" id='submit' onmouseover="mouse_hover()" onmouseleave="mouse_leave()"
+                    value="submit"> </td>
+        </tr>
+        <tr>
+            <td ondrop="drop(event)" ondragover="allowDrop(event)"> <input type="button" id='drag'
+                    ondragstart="drag_start(event)" ondrag="dragging(event)" draggable="true" value="drag"> </td>
+            <td ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+            <td><span id="demo"></span></td>
+            <td><input type="text"  oncopy="alert(`don't copy`)" value="Copy This text" readonly></td>
+            <td><input type="text"  onpaste="alert(`don't past`)" value="Paste the copied text" ></td>
+            <td id="mouse_down" onmousedown="mouse_down()">Mouse Down</td>
+        </tr>
+        <tr>
+                <td id="mouse_up" onmouseup="mouse_up()">Mouse Up</td>
+                <td id="mouse_move" onmousemove="mouse_move()">Mouse move</td>
+                <td id="onwheel" onwheel="on_wheel()">Mouse wheel</td>
+        </tr>
+    </table>
+    <script src="../../public/js/eventstable.js"></script>
+</body>
+
+</html>
