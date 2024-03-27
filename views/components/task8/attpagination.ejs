@@ -1,0 +1,18 @@
+<div class="d-flex  justify-content-center">
+    <% if(pageid == 1) { %>
+      <div class="btn border border-primary" style="pointer-events: none; cursor: default;"  ><a  href="/attendance?pageid=<%=1%>&orderby=<%=orderby%>&month=<%=month%>"> << </a></div>
+      <div class="btn border border-primary" style="pointer-events: none; cursor: default;" ><a href="/attendance?pageid=<%=Number(pageid)-1%>&orderby=<%=orderby%>&month=<%=month%>"> < </a> </div>
+      <%} else { %>
+        <div class="btn border border-primary"> <a href="/attendance?pageid=<%=1%>&orderby=<%=orderby%>&month=<%=month%>"> << </a></div>
+        <div class="btn border border-primary" ><a href="/attendance?pageid=<%=Number(pageid)-1%>&orderby=<%=orderby%>&month=<%=month%>"> < </a> </div>
+    <%}%>
+    <div class="btn border border-primary" ><a href=""><%=pageid%></a></div>
+    
+    <% if(pageid == 20) { %>
+        <div class="btn border border-primary" style="pointer-events: none; cursor: default;" ><a href="/attendance?pageid=<%=Number(pageid)+1%>&orderby=<%=orderby%>&&month=<%=month%>"> > </a></div>
+        <div class="btn border border-primary" style="pointer-events: none; cursor: default;" ><a href="/attendance?pageid=<%=20%>&month=<%=month%>"> >> </a></div>
+    <%} else { %>
+            <div class="btn border border-primary" ><a href="/attendance?orderby=<%=orderby%>&pageid=<%=Number(pageid)+1%>&month=<%=month%>"> > </a></div>
+            <div class="btn border border-primary" ><a href="/attendance?orderby=<%=orderby%>&pageid=<%=10%>&month=<%=month%> "> >> </a></div>
+    <%}%>
+</div>
