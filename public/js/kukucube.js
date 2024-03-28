@@ -41,6 +41,7 @@ function randomcolor() {
 
 randomcolor();
 function tableincrease() {
+    
      document.getElementsByClassName('col')[randomcolumn].removeAttribute("onclick","tableincrease()")
     // console.log("pressed")
     const rows = document.getElementsByClassName("row");

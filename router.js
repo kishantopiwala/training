@@ -26,21 +26,21 @@ routes.get('/generatelink/:email',generatelink)
 routes.get('/forgetpassword/:email',fprender)
 
 //Dynamic Table Route 
-routes.use('/dynamictable',dynamictable)
+routes.use('/dynamictable',authorization,dynamictable)
 
 // events table route
-routes.use('/eventstable',evnetstable)
+routes.use('/eventstable',authorization,evnetstable)
 
 // Kuku Cube Route
-routes.use('/kukucube',kukucube)
+routes.use('/kukucube',authorization,kukucube)
 
 // tic tac toe route
-routes.use('/tictactoe',tictactoe)
+routes.use('/tictactoe',authorization,tictactoe)
 
 // webpages routes 
-routes.use('/webpage1',webpage1)
-routes.use('/webpage2',webpage2)
-routes.use('/webpage3',webpage3)
+routes.use('/webpage1',authorization,webpage1)
+routes.use('/webpage2',authorization,webpage2)
+routes.use('/webpage3',authorization,webpage3)
 
 routes.use((req,res,next)=>{
     next()
