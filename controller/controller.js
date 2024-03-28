@@ -237,7 +237,7 @@ async function authorization(req, res, next) {
             res.redirect('/login');
         }
     } catch (error) {
-
+        res.redirect('/login');
     }
 
 }

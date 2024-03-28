@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Form</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <style>
+        th {
+            text-align: left;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        .ct {
+            max-width: 1140px;
+            margin: 0 auto;
+        }
+
+        .heading {
+            margin: 100px 0;
+        }
+
+        .lan_tech {
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+
+<!-- <body onload="languageandabality()"> -->
+
+<body id="body" onload="page()">
+    <div class="ct">
+        <form method="post" id="form">
+            <h1 class="my-3">Job Application Form</h1>
+            <div id="Basic_details" class="formcomponents">
+                <h3>Basic Details</h3>
+                <div class="d-flex flex-wrap justify-content-between">
+                    <div style="width: 48%;">
+                        <input type="text" class="form-control" id="emp_id" name="emp_id" hidden>
+                        <div class="mb-3">
+                            <label for="fname" class="form-label">First Name</label>
+                            <input type="text" class="form-control" id="fname" name="fname" tabindex="1">
+                            <span id="fnameerror" class="text-danger errormessage"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="designation" class="form-label">Designation</label>
+                            <input type="text" class="form-control" id="designation" name="designation" tabindex="3">
+                            <span id="designationerror" class="text-danger errormessage"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="add2" class="form-label">Address 2</label>
+                            <textarea id="add2" class="form-control errormessage" name="add2" cols="1" rows="1"
+                                tabindex="5"></textarea>
+                        </div>
+
+                        <div>
+                            <label for="state" class="form-label">State:</label>
+                            <select class="form-select" tabindex="7" name="state" id="state">
+                                <option value="">Select State</option>
+                                <option value="Gujarat"> Gujarat</option>
+                                <option value="Delhi">Delhi</option>
+                                <option value="Maharastra">Maharastra</option>
+                                <option value="Madhya pradesh">Madhya pradesh</option>
+                                <option value="Tamil Nadu">Tamil Nadu</option>
+                            </select>
+                            <span id="stateerror" class="text-danger errormessage"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="city" class="form-label">City</label>
+                            <input type="text" class="form-control" id="city" name="city" tabindex="9">
+                            <span id="cityerror" class="text-danger errormessage"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="pincode" class="form-label">Pincode</label>
+                            <input type="text" class="form-control" id="pincode" name="pincode" tabindex="12">
+                            <span id="pincodeerror" class="text-danger errormessage"></span>
+                        </div>
+                    </div>
+                    <div style="width: 48%;">
+                        <div class="mb-3">
+                            <label for="lname" class="form-label">Last Name</label>
+                            <input type="text" class="form-control" id="lname" name="lname" tabindex="2">
+                            <span id="lnameerror" class="text-danger errormessage"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="add1" class="form-label">Address 1</label>
+                            <textarea id="add1" class="form-control" name="add1" rows="1" tabindex="4"></textarea>
+                            <span id="add1error" class="text-danger errormessage"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="text" class="form-control" id="email" name="email" tabindex="6">
+                            <span id="emailerror" class="text-danger errormessage"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="phoneno" class="form-label">Phone Number</label>
+                            <input type="text" class="form-control" id="phoneno" name="phoneno" tabindex="8">
+                            <span id="phonenoerror" class="text-danger errormessage"></span>
+                        </div>
+                        <div>
+                            <label for="Gender" class="form-label">Gender</label>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="gender" id="male" value="1"
+                                    tabindex="10">
+                                <label class="form-check-label" for="male">Male</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="gender" id="female" value="0"
+                                    tabindex="11">
+                                <label class="form-check-label" for="female">Female</label>
+                            </div>
+                            <span id="gendererror" class="text-danger"></span>
+                        </div>
+                        <div>
+                            <label for="Relation_status" class="form-label">RelationShip Status:</label>
+                            <select name="relation_status" class="form-select" id="relation_status" tabindex="13">
+                                <option value="0">Single</option>
+                                <option value="1">Married</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="form-label" for="dob">Date of Birth</label>
+                            <input type="text" class="form-control" placeholder="yyyy-mm-dd" id="dob" name="dob">
+                            <span id="doberror" class="text-danger errormessage"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="Education_details" class="formcomponents">
+                <h3>Education details</h3>
+                <div class="my-5">
+                    <div class="d-flex my-5 justify-content-between">
+                        <h5>SSC Details</h5>
+                        <input type="text" class="form-control" id="sscid" name="edu_id" hidden>
+                        <div>
+                            <label class="form-label" for="ssc">Name of Board</label>
+                            <input type="text" class="form-control" id="ssc" name="course_name" tabindex="14">
+                            <span id="sscerror" class="text-danger errormessage"></span>
+                        </div>
+                        <div>
+                            <label class="form-label" for="sscpassingyear">Passing Year</label>
+                            <input type="text" class="form-control" id="sscpassingyear" name="passingyear"
+                                tabindex="15">
+                            <span id="sscpassingyearerror" class="text-danger errormessage"></span>
+                        </div>
+                        <div>
+                            <label class="form-label" for="sscpercentage">Percentage</label>
+                            <input type="text" class="form-control" id="sscpercentage" name="percentage" tabindex="16">
+                            <span id="sscpercentageerror" class="text-danger errormessage"></span>
+                        </div>
+                    </div>
+                    <div class="d-flex my-5 justify-content-between">
+                        <h5>HSC Details</h5>
+                        <input type="text" class="form-control" id="hscid" name="edu_id" hidden>
+                        <div>
+                            <label class="form-label" for="hsc">Name of Board</label>
+                            <input type="text" class="form-control" id="hsc" name="course_name" tabindex="17">
+                            <span id="hscerror" class="text-danger errormessage"></span>
+                        </div>
+                        <div>
+                            <label class="form-label" for="hscpassingyear">Passing Year</label>
+                            <input type="text" class="form-control" id="hscpassingyear" name="passingyear"
+                                tabindex="18">
+                            <span id="hscpassingyearerror" class="text-danger errormessage"></span>
+                        </div>
+                        <div>
+                            <label class="form-label" for="hscpercentage">Percentage</label>
+                            <input type="text" class="form-control" id="hscpercentage" name="percentage" tabindex="19">
+                            <span id="hscpercentageerror" class="text-danger errormessage"></span>
+                        </div>
+                    </div>
+                    <div class="d-flex my-5 justify-content-between">
+                        <h5>Bechelor Degree</h5>
+                        <input type="text" class="form-control" id="bid" name="edu_id" hidden>
+                        <div>
+                            <label class="form-label" for="b_course_name">Course Name</label>
+                            <input type="text" class="form-control" id="b_course_name" name="course_name" tabindex="20">
+                            <span id="b_course_nameerror" class="text-danger errormessage"></span>
+                        </div>
+                        <div>
+                            <label class="form-label" for="b_passingyear">Passing Year</label>
+                            <input type="text" class="form-control" id="b_passingyear" name="passingyear" tabindex="22">
+                            <span id="b_passingyearerror" class="text-danger errormessage"></span>
+                        </div>
+                        <div>
+                            <label class="form-label" for="b_percentage">Percentage</label>
+                            <input type="text" class="form-control" id="b_percentage" name="percentage" tabindex="23">
+                            <span id="b_percentageerror" class="text-danger errormessage"></span>
+                        </div>
+                    </div>
+                    <div class="d-flex my-5 justify-content-between">
+                        <h5>Master Degree</h5>
+                        <input type="text" class="form-control" id="mid" name="edu_id" hidden>
+                        <div>
+                            <label class="form-label" for="m_course_name">Course Name</label>
+                            <input type="text" class="form-control" id="m_course_name" name="course_name" tabindex="24">
+                            <span id="m_course_nameerror" class="text-danger errormessage"></span>
+                        </div>
+                        <div>
+                            <label class="form-label" for="m_passingyear">Passing Year</label>
+                            <input type="text" class="form-control" id="m_passingyear" name="passingyear" tabindex="25">
+                            <span id="m_passingyearerror" class="text-danger errormessage"></span>
+                        </div>
+                        <div>
+                            <label class="form-label" for="m_percentage">Percentage</label>
+                            <input type="text" class="form-control" id="m_percentage" name="percentage" tabindex="26">
+                            <span id="m_percentageerror" class="text-danger errormessage"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="Work_details" class="formcomponents">
+                <h3>Work Details</h3>
+                <div class="d-flex justify-content-between my-5">
+                    <input type="text" class="form-control" id="workid" name="workid" hidden>
+                    <div class="mb-3">
+                        <label for="company1" class="form-label">Company Name</label>
+                        <input type="text" class="form-control company" id="company1" name="companys" tabindex="27">
+                        <span id="company1error" class="text-danger errormessage"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label for="workdesignation1" class="form-label">Designation</label>
+                        <input type="text" class="form-control workdesignation" id="workdesignation1"
+                            name="workdesignation" tabindex="28">
+                        <span id="workdesignation1error" class="text-danger errormessage"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label for="fromdate1" class="form-label">From</label>
+                        <input type="text" class="form-control fromdate" placeholder="yyyy-mm-dd" id="fromdate1"
+                            name="fromdates" tabindex="29">
+                        <span id="fromdate1error" class="text-danger errormessage"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label for="todate1" class="form-label">To</label>
+                        <input type="text" class="form-control todate" placeholder="yyyy-mm-dd" id="todate1"
+                            name="todates" tabindex="30">
+                        <span id="todate1error" class="text-danger errormessage"></span>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between my-5">
+                    <input type="text" class="form-control company" id="workid" name="workid" hidden>
+                    <div class="mb-3">
+                        <label for="company2" class="form-label">Company Name</label>
+                        <input type="text" class="form-control company" id="company2" name="companys" tabindex="31">
+                        <span id="company2error" class="text-danger errormessage"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label for="workdesignation2" class="form-label">Designation</label>
+                        <input type="text" class="form-control workdesignation" id="workdesignation2"
+                            name="workdesignation" tabindex="32">
+                        <span id="workdesignation2error" class="text-danger errormessage"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label for="fromdate2" class="form-label">From</label>
+                        <input type="text" class="form-control fromdate" placeholder="yyyy-mm-dd" id="fromdate2"
+                            name="fromdates" tabindex="33">
+                        <span id="fromdate2error" class="text-danger errormessage"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label for="todate2" class="form-label">To</label>
+                        <input type="text" class="form-control todate" placeholder="yyyy-mm-dd" id="todate2"
+                            name="todates" tabindex="34">
+                        <span id="todate2error" class="text-danger errormessage"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="Language_technologies" class="lan_tech formcomponents">
+                <div>
+                    <h3>Language Known</h3>
+                    <div class="my-5">
+                        <div class="d-flex justify-content-between my-3">
+                            
+                            <input type="checkbox" id="language1" class="form-check-input language"
+                                onclick="languageandabality()" name="languages" value="hindi" tabindex="35"> <label
+                                class="form-check-label mx-3" for="language1">Hindi</label>
+                            <input type="checkbox" id="ability11" class="form-check-input languageability1"
+                                name="language1ability[]" value="read" tabindex="36">
+                            <label class="form-check-label mx-3" for="ability11">Read</label>
+                            <input type="checkbox" id="ability21" class="form-check-input languageability1"
+                                name="language1ability[]" tabindex="37" value="write"> <label
+                                class="form-check-label mx-3" for="ability21">Write</label>
+                            <input type="checkbox" id="ability31" class="form-check-input languageability1"
+                                name="language1ability[]" tabindex="38" value="speak"> <label
+                                class="form-check-label mx-3" for="ability31">Speak</label>
+                            <span id="language1error" class="text-danger errormessage"></span>
+                        </div>
+
+                        <div class="d-flex justify-content-between my-3">
+                            <input type="checkbox" id="language2" class="form-check-input language"
+                                onclick="languageandabality()" name="languages" tabindex="39" value="english">
+                            <label class="form-check-label mx-3" for="language2">English</label>
+                            <input type="checkbox" id="ability12" class="form-check-input languageability2"
+                                name="language2ability[]" value="read" tabindex="40">
+                            <label class="form-check-label mx-3" for="ability12">Read</label>
+                            <input type="checkbox" id="ability22" class="form-check-input languageability2"
+                                name="language2ability[]" value="write" tabindex="41">
+                            <label class="form-check-label mx-3" for="ability22">Write</label>
+                            <input type="checkbox" id="ability32" class="form-check-input languageability2"
+                                name="language2ability[]" tabindex="42" value="speak"> <label
+                                class="form-check-label mx-3" for="ability32">Speak</label>
+                            <span id="language2error" class="text-danger errormessage"></span>
+                        </div>
+
+                        <div class="d-flex justify-content-between my-3">
+                            <input type="checkbox" id="language3" class="form-check-input language"
+                                onclick="languageandabality()" name="languages" tabindex="43" value="gujarati"> <label
+                                class="form-check-label mx-3" for="language3">Gujarati</label>
+                            <input type="checkbox" id="ability13" class="form-check-input languageability3"
+                                name="language3ability[]" value="read" tabindex="44">
+                            <label class="form-check-label mx-3" for="ability13">Read</label>
+                            <input type="checkbox" id="ability23" class="form-check-input languageability3"
+                                name="language3ability[]" tabindex="45" value="write"> <label
+                                class="form-check-label mx-3" for="ability23">Write</label>
+                            <input type="checkbox" id="ability33" class="form-check-input languageability3"
+                                name="language3ability[]" tabindex="46" value="speak"> <label
+                                class="form-check-label mx-3" for="ability33">Speak</label>
+                            <span id="language3error" class="text-danger errormessage"></span>
+                        </div>
+                        <span id="languageerror" class="text-danger errormessage"></span>
+                    </div>
+                </div>
+                <div>
+                    <h3>Technologies Known</h3>
+                    <div>
+                        <div class="d-flex justify-content-between my-3">
+                            <input type="text" id="tech_id"  name="tech_id" value="" hidden>
+                            <input type="checkbox" id="technology1" class="form-check-input language"
+                                onclick="languageandabality()" name="technologys" tabindex="47" value="mysql">
+                            <label class="form-check-label mx-3" for="technology1">Mysql</label>
+                            <input type="radio" id="technologyability11" class="technologyability1"
+                                name="technology1ability" value="beginer" tabindex="48">
+                            <label class="form-check-label mx-3" for="technologyability11">Beginer</label>
+                            <input type="radio" id="technologyability21" class=" technologyability1"
+                                name="technology1ability" value="mideator" tabindex="49"> <label
+                                class="form-check-label mx-3" for="technologyability21">Mideator</label>
+                            <input type="radio" id="technologyability31" class=" technologyability1"
+                                name="technology1ability" value="expert" tabindex="50"> <label
+                                class="form-check-label mx-3" for="technologyability31">Expert</label>
+                            <span id="technology1error" class="text-danger errormessage"></span>
+                        </div>
+                        <div class="d-flex justify-content-between my-3">
+                            <input type="text" id="tech_id"  name="tech_id" value="" hidden>
+                            <input type="checkbox" id="technology2" class="form-check-input language"
+                                onclick="languageandabality()" name="technologys" tabindex="51" value="laravel"> <label
+                                class="form-check-label mx-3" for="technology2">Laravel</label>
+                            <input type="radio" id="technologyability12" class="technologyability2"
+                                name="technology2ability" value="beginer" tabindex="52"> <label
+                                class="form-check-label mx-3" for="technologyability12">Beginer</label>
+                            <input type="radio" id="technologyability22" class="technologyability2"
+                                name="technology2ability" value="mideator" tabindex="53"> <label
+                                class="form-check-label mx-3" for="technologyability22">Mideator</label>
+                            <input type="radio" id="technologyability32" class="technologyability2"
+                                name="technology2ability" value="expert" tabindex="54"> <label
+                                class="form-check-label mx-3" for="technologyability32">Expert</label>
+                            <span id="technology2error" class="text-danger errormessage"></span>
+                        </div>
+                        <div class="d-flex justify-content-between my-3">
+                            <input type="text" id="tech_id"  name="tech_id" value="" hidden>
+                            <input type="checkbox" id="technology3" class="form-check-input language"
+                                onclick="languageandabality()" name="technologys" tabindex="55" value="node"> <label
+                                class="form-check-label mx-3" for="technology3">Node</label>
+                            <input type="radio" id="technologyability13" class="technologyability3"
+                                name="technology3ability" value="beginer" tabindex="56"> <label
+                                class="form-check-label mx-3" for="technologyability13">Beginer</label>
+                            <input type="radio" id="technologyability23" class="technologyability3"
+                                name="technology3ability" value="mideator" tabindex="57"> <label
+                                class="form-check-label mx-3" for="technologyability23">Mideator</label>
+                            <input type="radio" id="technologyability33" class="technologyability3"
+                                name="technology3ability" value="expert" tabindex="58"> <label
+                                class="form-check-label mx-3" for="technologyability33">Expert</label>
+                            <span id="technology3error" class="text-danger errormessage"></span>
+                        </div>
+                        <div class="d-flex justify-content-between my-3">
+                            <input type="text" id="tech_id"  name="tech_id" value="" hidden>
+                            <input type="checkbox" id="technology4" class="form-check-input language"
+                                onclick="languageandabality()" name="technologys" tabindex="59" value="python"> <label
+                                class="form-check-label mx-3" for="technology4">Python</label>
+                            <input type="radio" id="technologyability14" class="technologyability4"
+                                name="technology4ability" value="beginer" tabindex="60"> <label
+                                class="form-check-label mx-3" for="technologyability14">Beginer</label>
+                            <input type="radio" id="technologyability24" class="technologyability4"
+                                name="technology4ability" value="mideator" tabindex="61"> <label
+                                class="form-check-label mx-3" for="technologyability24">Mideator</label>
+                            <input type="radio" id="technologyability34" class="technologyability4"
+                                name="technology4ability" value="expert" tabindex="62"> <label
+                                class="form-check-label mx-3" for="technologyability34">Expert</label>
+                            <span id="technology4error" class="text-danger errormessage"></span>
+                        </div>
+                        <span id="technologyerror" class="text-danger errormessage"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="Referance_details" class="formcomponents">
+                <h3>Referance Contact</h3>
+                <div class="d-flex my-5 justify-content-between flex-wrap">
+                    <input type="text" id="ref_id" name="ref_id" hidden>
+                    <div>
+                        <label class="form-label" for="reference_name">Name</label>
+                        <input type="text" class="form-control reference_name" id="reference_name"
+                        name="reference_names" tabindex="63">
+                        <span id="reference_nameerror" class="text-danger errormessage"></span>
+                    </div>
+                    <div>
+                        <label class="form-label" for="referance_contact">Contact Number</label>
+                        <input type="text" class="form-control reference_contact" id="reference_contact"
+                        name="reference_contacts" tabindex="64">
+                        <span id="reference_contacterror" class="text-danger errormessage"></span>
+                    </div>
+                    <div>
+                        <label class="form-label" for="referance_relation">Relation</label>
+                        <input type="text" class="form-control reference_relation" id="reference_relation"
+                            name="reference_relations" tabindex="65">
+                        <span id="reference_relationerror" class="text-danger errormessage"></span>
+                    </div>
+                </div>
+                <div class="d-flex my-5 justify-content-between flex-wrap">
+
+                    <input type="text" id="ref_id" name="ref_id" hidden>
+                    <div>
+                        <label class="form-label" for="reference_name2">Name</label>
+                        <input type="text" class="form-control reference_name" id="reference_name2"
+                            name="reference_names" tabindex="63">
+                        <span id="reference_name2error" class="text-danger errormessage"></span>
+                    </div>
+                    <div>
+                        <label class="form-label" for="referance_contact2">Contact Number</label>
+                        <input type="text" class="form-control reference_contact" id="reference_contact2"
+                            name="reference_contacts" tabindex="64">
+                        <span id="reference_contact2error" class="text-danger errormessage"></span>
+                    </div>
+                    <div>
+                        <label class="form-label" for="referance_relation2">Relation</label>
+                        <input type="text" class="form-control reference_relation" id="reference_relation2"
+                            name="reference_relations" tabindex="65">
+                        <span id="reference_relation2error" class="text-danger errormessage"></span>
+                    </div>
+                </div>
+                
+            </div>
+
+            <div id="Preferences_details" class="formcomponents">
+                <h3>Preferences</h3>
+                <div class="d-flex justify-content-between w-100">
+                    <div>
+                        <label for="p_location" class="form-label">Prefered Location:</label>
+                        <select class="form-select" tabindex="66" name="p_location" id="p_location">
+                            <option value="Gujarat"> Gujarat</option>
+                            <option value="Delhi">Delhi</option>
+                            <option value="Maharastra">Maharastra</option>
+                            <option value="Madhya pradesh">Madhya pradesh</option>
+                            <option value="Tamil Nadu">Tamil Nadu</option>
+                        </select>
+                        <span id="p_locationerror" class="text-danger errormessage"></span>
+                    </div>
+                    <div class="d-flex flex-column flex-wrap">
+                        <div>
+                            <label class="form-label" for="notice_period">Notice Period</label>
+                            <input type="text" class="form-control" placeholder="1-12 months" id="notice_period"
+                                name="notice_period" tabindex="67">
+                            <span id="notice_perioderror" class="text-danger errormessage"></span>
+                        </div>
+                        <div>
+                            <label class="form-label" for="expacted_ctc">Expacted CTC</label>
+                            <input type="text" class="form-control" id="expacted_ctc" name="expacted_ctc" tabindex="68">
+                            <span id="expacted_ctcerror" class="text-danger errormessage"></span>
+                        </div>
+                        <div>
+                            <label class="form-label" for="current_ctc">Current CTC</label>
+                            <input type="text" class="form-control" id="current_ctc" name="current_ctc" tabindex="69">
+                            <span id="current_ctcerror" class="text-danger errormessage"></span>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="p_department" class="form-label">Department:</label>
+                        <select class="form-select" tabindex="70" name="p_department" id="p_department">
+                            <option value="designing">Designing</option>
+                            <option value="development">Development</option>
+                            <option value="qa">QA</option>
+                            <option value="ba">BA</option>
+                        </select>
+                        <span id="p_departmenterror" class="text-danger errormessage"></span>
+                    </div>
+                </div>
+            </div>
+            <!-- <input type="submit" id="submit" value="submit" style="display: none;" class="btn btn-primary"> -->
+        </form>
+        <div class="mt-5">
+            <div class="btn btn-primary" id="previous">Previous</div>
+            <input type="submit" id="submit" value="submit" form="form" style="display: none;" class="btn btn-primary">
+            <div class="btn btn-primary" id="next">Next</div>
+        </div>
+    </div>
+    <script src="../../../public/js/task12/script.js"></script>
+    <script src="../../../public/js/task12/pagination.js"></script>
+    <script src="../../../public/js/task12/api.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee List</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <style>
+            .container {
+                max-width: 1140px;
+                margin: 50px auto;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+        </style>
+</head>
+
+<body class="container">
+
+    <div>
+        <a href="/jobform" class="btn btn-primary m-5">Add Employee</a>
+    </div>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <%for (let value in col) { %>
+                    <th>
+                        <%= col[value].name %>
+                    </th>
+                <%} %>
+                <th>Controls</th>
+            </tr>
+        </thead>
+        <tbody>
+            <%for(let i=0; i < row.length;i++) {%>
+                <tr>
+                    <% for(let j=0; j < col.length; j++) {%>
+                        <td>
+                            <%= row[i][col[j].name] %>
+                        </td>
+                        <%}%>
+                    <td><a href ="/getemployeedetail/<%=row[i][col[0].name]%>" >Update</a></td>
+                </tr>
+                <%}%>
+        </tbody>
+    </table>
+
+
+</body>
+
+</html>

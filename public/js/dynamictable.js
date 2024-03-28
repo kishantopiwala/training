@@ -46,8 +46,8 @@ document.getElementById('removecol').addEventListener('click',removecol);
 function removecol(){
     const cols  = document.getElementsByName("col")
     const rows = document.getElementsByName("row")
-    console.log(cols.length)
-    if(cols.length > 2){
+    console.log(rows[0].children.length)
+    if(rows[0].children.length > 2){
         for(i = 0;i<rows.length;i++){
             document.getElementsByName("row")[i].lastChild.remove();
         }
