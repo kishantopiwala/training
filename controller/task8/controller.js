@@ -38,7 +38,7 @@ const studentlist = (req, res) => {
             if (studentid || fname || lname || email || phoneno || city || state ) {
                 select = `select stu_id As StudentID, fname As FirstName, lname As LastName, email As Email, phoneno As MobileNumber,age as Age, gender As Gender,
                 address As Address, city As City, state As  State,
-                postalcode As PinCode from student where stu_id like '${studentid}' or fname like '${fname}' or lname like '${lname}' or phoneno like '${phoneno}' 
+                postalcode As PinCode from student where stu_id like '${studentid}' or fname like '${fname}' or email like '${email}' or lname like '${lname}' or phoneno like '${phoneno}' 
                 or city like '${city}' or state like '${state}' order by ${orderby} ${sortby} limit ${start}, ${recordsinonepage}`;
             }
         }

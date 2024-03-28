@@ -11,6 +11,7 @@ routes.post('/submitdetails',authorization,submitform)
 routes.get('/employees',authorization,showemployees)
 routes.get('/getemployeedetail/:emp_id',authorization,getemployeedetail)
 routes.post('/updateemployee',authorization,updateemployee)
+// routes.get('/deleteemployee',authorization,)
 routes.use((req,res,next)=>{
     next()
 })

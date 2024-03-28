@@ -547,4 +547,10 @@ async function updateemployee(req, res) {
     res.send('data updated')
 }
 
+
+function deleteemployee(req,res) {
+    var emp_id = req.params.emp_id;
+    var deleteuser = `delete from basic_details`
+}
+
 module.exports = { jobform, submitform, showemployees, getemployeedetail, updateemployee }

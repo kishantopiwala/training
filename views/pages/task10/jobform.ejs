@@ -218,6 +218,7 @@
                         </div>
                     </div>
                 </div>
+                <% if (locals.result) {%>
                 <% if(result.courses){%>
                     <% for (let course=0; course < result.courses.length; course++) {%>
                         <script>
@@ -232,6 +233,7 @@
                             percentage["<%=course%>"].value = "<%=result.percentages[course]%>"
                         </script>
                     <% } %>
+                <%}%>
                 <%}%>
             </div>
 
