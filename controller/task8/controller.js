@@ -194,12 +194,6 @@ const dlimitersearch = (req, res) => {
     var recordsinonepage = 50;
     if (search != null) {
 
-        // var fnamesymbol = search.indexOf('_')
-        // var lnamesymbol = search.indexOf('^')
-        // var emailsymbol = search.indexOf('$')
-        // var agesymbol = search.indexOf('}')
-        // var mobilesymbol = search.indexOf('{')
-        // var citysymbol = search.indexOf(':')
         var fnamesymbol = [];
         var lnamesymbol = [];
         var emailsymbol = [];
@@ -262,12 +256,6 @@ const dlimitersearch = (req, res) => {
         addvalues(agesymbol, age);
         addvalues(mobilesymbol, mobileno);
         addvalues(citysymbol, city);
-        // var fname = search.slice(fnamesymbol + 1, splitvalues(fnamesymbol));
-        // var lname = search.slice(lnamesymbol + 1, splitvalues(lnamesymbol));
-        // var email = search.slice(emailsymbol + 1, splitvalues(emailsymbol));
-        // var age = Number(search.slice(agesymbol + 1, splitvalues(agesymbol)));
-        // var mobileno = Number(search.slice(mobilesymbol + 1, splitvalues(mobilesymbol)));
-        // var city = search.slice(citysymbol + 1, splitvalues(citysymbol));
 
         var query = `select stu_id As StudentID, fname As FirstName, lname As LastName, email As Email, phoneno As MobileNumber,age as Age, gender As Gender,
         address As Address, city As City, state As State,postalcode As PinCode from student where `
@@ -305,10 +293,6 @@ const dlimitersearch = (req, res) => {
 
     var select = `select stu_id As StudentID, fname As FirstName, lname As LastName, email As Email, phoneno As MobileNumber,age as Age, gender As Gender,
                  address As Address, city As City, state As  State,postalcode As PinCode from student limit ${start}, ${recordsinonepage}`;
-    
-                 // select = `select stu_id As StudentID, fname As FirstName, lname As LastName, email As Email, phoneno As MobileNumber,age as Age, gender As Gender,
-    //             address As Address, city As City, state As  State,postalcode As PinCode from student where fname like '${fname.join}%' and lname like '%${lname}%' and email like '%${email}' and age like '%${age}%' and phoneno like '%${mobileno}%' 
-    //             and city like '%${city}%' limit ${start}, ${recordsinonepage}`;
     if (fname,lname,email,age,mobileno,city != null) {
         con.query(query, (err, row, col) => {
             if (err) {
