@@ -1,14 +1,13 @@
 const { con, asyncQuery } = require('../../connection')
 const studentlist = (req, res) => {
-
-    var studentid = Number(req.body.studentid);
-    var { fname, lname, email, phoneno, city, state} = req.body;
-    var orderby = req.query.orderby;
-    var sortby = req.query.sortby;
+    const studentid = Number(req.body.studentid);
+    let { fname, lname, email, phoneno, city, state } = req.body;
+    let orderby = req.query.orderby;
+    let sortby = req.query.sortby;
     let recordsinonepage = 200;
     var pagenumber = req.query.pageid;
 
-    if(orderby == undefined || orderby == null || sortby == undefined || sortby == null){
+    if (orderby == undefined || orderby == null || sortby == undefined || sortby == null) {
         orderby = "StudentID"
         sortby = 'asc'
     }
@@ -33,9 +32,9 @@ const studentlist = (req, res) => {
 
     var select = `select stu_id As StudentID,fname As FirstName ,lname As LastName, email As Email,phoneno As MobileNumber,age as Age, gender As Gender, address As Address, city As City,state As  State ,postalcode As PinCode from student limit ${start},${recordsinonepage}`;
     if (orderby) {
-        if(sortby){
-            select = `select stu_id As StudentID, fname As FirstName, lname As LastName, email As Email, phoneno As MobileNumber,age as Age, gender As Gender, address As Address, city As City, state As  State,postalcode As PinCode from student order by ${orderby} ${sortby} limit ${start}, ${recordsinonepage}`;  
-            if (studentid || fname || lname || email || phoneno || city || state ) {
+        if (sortby) {
+            select = `select stu_id As StudentID, fname As FirstName, lname As LastName, email As Email, phoneno As MobileNumber,age as Age, gender As Gender, address As Address, city As City, state As  State,postalcode As PinCode from student order by ${orderby} ${sortby} limit ${start}, ${recordsinonepage}`;
+            if (studentid || fname || lname || email || phoneno || city || state) {
                 select = `select stu_id As StudentID, fname As FirstName, lname As LastName, email As Email, phoneno As MobileNumber,age as Age, gender As Gender,
                 address As Address, city As City, state As  State,
                 postalcode As PinCode from student where stu_id like '${studentid}' or fname like '${fname}' or email like '${email}' or lname like '${lname}' or phoneno like '${phoneno}' 
@@ -43,12 +42,12 @@ const studentlist = (req, res) => {
             }
         }
     }
-
+    
     con.query(select, (err, row, col) => {
         if (err) {
             throw err
         } else {
-            res.render('pages/task8/studentlist', { row: row, col: col, pageid: pagenumber, orderby: orderby, sortby: sortby,fname:fname,state:state,city:city,lname:lname  });
+            res.render('pages/task8/studentlist', { row: row, col: col, pageid: pagenumber, orderby: orderby, sortby: sortby, fname: fname, state: state, city: city, lname: lname });
         }
     });
 }
@@ -68,7 +67,6 @@ const attendance = (req, res) => {
     if (pagenumber <= 0 || pagenumber == null) {
         pagenumber = 1;
     }
-
 
     if (pagenumber == 1) {
         var start = 0;
@@ -99,7 +97,7 @@ const attendance = (req, res) => {
         if (err) {
             throw err
         } else {
-            res.render('pages/task8/attendancelist', { row: row, col: col, pageid: pagenumber, orderby: orderby, month: month, sortby: sortby, sort: sort});
+            res.render('pages/task8/attendancelist', { row: row, col: col, pageid: pagenumber, orderby: orderby, month: month, sortby: sortby, sort: sort });
         }
     });
 }
@@ -140,7 +138,6 @@ const result = (req, res) => {
             throw err
         } else {
             res.render('pages/task8/resultlist', { row: row, col: col, pageid: pagenumber, orderby: orderby });
-            // res.render('pages/resultlist', { row: row, col: col, pageid: pagenumber, orderby: orderby });
         }
     });
 }
@@ -173,20 +170,6 @@ const viewreport = (req, res) => {
         }
     });
 }
-
-const addattendance = (req, res) => {
-    for (let id = 1; id <= 200; id++) {
-        for (let date = 1; date <= 29; date++) {
-            var att = `insert into attendance(stu_id,a_date,p_a) values(${id},"2024-02-${date}",${Math.floor(Math.random() * 2)})`
-            con.query(att, (err) => {
-                if (err) {
-                    throw err
-                }
-            });
-        }
-    }
-}
-
 
 const dlimitersearch = (req, res) => {
     var search = req.body.filter;
@@ -228,8 +211,6 @@ const dlimitersearch = (req, res) => {
             }
         }
 
-        console.log(fnamesymbol, lnamesymbol, emailsymbol, agesymbol, mobilesymbol, citysymbol);
-        var searchlength = search.length;
         var fname = [];
         var lname = [];
         var email = [];
@@ -260,59 +241,56 @@ const dlimitersearch = (req, res) => {
         var query = `select stu_id As StudentID, fname As FirstName, lname As LastName, email As Email, phoneno As MobileNumber,age as Age, gender As Gender,
         address As Address, city As City, state As State,postalcode As PinCode from student where `
 
-        function addquery(dataarray,stringname) {
+        function addquery(dataarray, stringname) {
             for (let data = 0; data < dataarray.length; data++) {
                 console.log(dataarray[data])
-                if(data == 0){
+                if (data == 0) {
                     query += `(`
                 }
-                if(dataarray.length > 1 && data < dataarray.length-1){
-                    query +=` ${stringname} like '%${dataarray[data]}%' or`
+                if (dataarray.length > 1 && data < dataarray.length - 1) {
+                    query += ` ${stringname} like '%${dataarray[data]}%' or`
                 }
-                else if(data == dataarray.length-1){
+                else if (data == dataarray.length - 1) {
                     query += ` ${stringname} like '%${dataarray[data]}%' ) and`
                 }
                 else {
-                    query +=` ${stringname} like '%${dataarray[data]}%`
+                    query += ` ${stringname} like '%${dataarray[data]}%`
                 }
             }
         }
 
+        addquery(fname, 'fname');
+        addquery(lname, 'lname');
+        addquery(email, 'email');
+        addquery(age, 'age');
+        addquery(mobileno, 'phoneno');
+        addquery(city, 'city')
 
-        addquery(fname,'fname');
-        addquery(lname,'lname');
-        addquery(email,'email');
-        addquery(age,'age');
-        addquery(mobileno,'phoneno');
-        addquery(city,'city')
-        
-        query = query.slice(0,-3)
+        query = query.slice(0, -3)
         console.log(query)
-        
+
     }
 
     var select = `select stu_id As StudentID, fname As FirstName, lname As LastName, email As Email, phoneno As MobileNumber,age as Age, gender As Gender,
                  address As Address, city As City, state As  State,postalcode As PinCode from student limit ${start}, ${recordsinonepage}`;
-    if (fname,lname,email,age,mobileno,city != null) {
+    if (fname, lname, email, age, mobileno, city != null) {
         con.query(query, (err, row, col) => {
             if (err) {
                 throw err
             } else {
-                res.render('pages/task8/dlimitersearch', { row: row, col: col,search:search });
+                res.render('pages/task8/dlimitersearch', { row: row, col: col, search: search });
             }
         });
     }
-    else{
-        con.query(select,(err, row, col) => {
+    else {
+        con.query(select, (err, row, col) => {
             if (err) {
                 throw err
             } else {
-                res.render('pages/task8/dlimitersearch', { row: row, col: col,search:search });
+                res.render('pages/task8/dlimitersearch', { row: row, col: col, search: search });
             }
         });
     }
 }
 
-
-
-module.exports = { studentlist, addattendance, attendance, result, viewreport,dlimitersearch };
+module.exports = { studentlist, attendance, result, viewreport, dlimitersearch };

@@ -9,11 +9,11 @@
     <%}%>
     <div class="btn border border-primary" ><a href=""><%=pageid%></a></div>
     
-    <% if(pageid == 249) { %>
+    <% if(pageid == 250) { %>
         <div class="btn border border-primary" style="pointer-events: none; cursor: default;" ><a href="/studentlist?pageid=<%=Number(pageid)+1%>&orderby=<%=orderby%>&sortby=<%=sortby%>&state=<%=state%>&fname=<%=fname%>&lanme=<%=lname%>&city=<%=city%>"> > </a></div>
-        <div class="btn border border-primary" style="pointer-events: none; cursor: default;" ><a href="/studentlist?pageid=<%=249%>&orderby=<%=orderby%>&sortby=<%=sortby%>&state=<%=state%>&fname=<%=fname%>&lanme=<%=lname%>&city=<%=city%>"> >> </a></div>
+        <div class="btn border border-primary" style="pointer-events: none; cursor: default;" ><a href="/studentlist?pageid=<%=250%>&orderby=<%=orderby%>&sortby=<%=sortby%>&state=<%=state%>&fname=<%=fname%>&lanme=<%=lname%>&city=<%=city%>"> >> </a></div>
     <%} else { %>
             <div class="btn border border-primary" ><a href="/studentlist?orderby=<%=orderby%>&sortby=<%=sortby%>&pageid=<%=Number(pageid)+1%>&state=<%=state%>&fname=<%=fname%>&lanme=<%=lname%>&city=<%=city%>"> > </a></div>
-            <div class="btn border border-primary" ><a href="/studentlist?orderby=<%=orderby%>&sortby=<%=sortby%>&pageid=<%=249%>&state=<%=state%>&fname=<%=fname%>&lanme=<%=lname%>&city=<%=city%>"> >> </a></div>
+            <div class="btn border border-primary" ><a href="/studentlist?orderby=<%=orderby%>&sortby=<%=sortby%>&pageid=<%=250%>&state=<%=state%>&fname=<%=fname%>&lanme=<%=lname%>&city=<%=city%>"> >> </a></div>
     <%}%>
 </div>

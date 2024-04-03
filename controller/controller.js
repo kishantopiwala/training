@@ -121,6 +121,7 @@ async function activationlink(email) {
         return false;
     }
 }
+
 async function submitform(req, res) {
     const { fname, lname, email, phoneno } = req.body
 

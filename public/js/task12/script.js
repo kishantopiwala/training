@@ -1,8 +1,6 @@
 
 function sscvalidation() {
     var emptyreg = /^\w+$/;
-    var fnamereg = /^[a-zA-Z]+$/;
-    var phonenoregx = /^[0-9]{10}$/;
     var percentageregx = /^[0-9]{1,3}$/;
     var year = /^[0-9]{4}$/;
     var validate = true;
@@ -31,8 +29,6 @@ function sscvalidation() {
 
 function hscvalidation() {
     var emptyreg = /^\w+$/;
-    var fnamereg = /^[a-zA-Z]+$/;
-    var phonenoregx = /^[0-9]{10}$/;
     var percentageregx = /^[0-9]{1,3}$/;
     var year = /^[0-9]{4}$/;
     var validate = true;
@@ -62,14 +58,10 @@ function hscvalidation() {
 
 function bechlorevalidation() {
     var emptyreg = /^\w+$/;
-    var fnamereg = /^[a-zA-Z]+$/;
-    var phonenoregx = /^[0-9]{10}$/;
-    // var percentageregx = /^[0-9]{1,3}$/;
     var percentageregx = /(^100([.]0{1,2})?)$|(^\d{1,2}([.]\d{1,2})?)$/
     var year = /^[0-9]{4}$/;
     var validate = true;
     var b_course_name = document.getElementById('b_course_name').value;
-    // var b_university_name = document.getElementById('b_university_name').value;
     var b_passingyear = document.getElementById('b_passingyear').value;
     var b_percentage = document.getElementById('b_percentage').value;
     if (emptyreg.test(b_course_name) || emptyreg.test(b_passingyear) || emptyreg.test(b_percentage)) {
@@ -94,13 +86,10 @@ function bechlorevalidation() {
 
 function mastervalidation() {
     var emptyreg = /^\w+$/;
-    var fnamereg = /^[a-zA-Z]+$/;
-    var phonenoregx = /^[0-9]{10}$/;
     var percentageregx = /^[0-9]{1,3}$/;
     var year = /^[0-9]{4}$/;
     var validate = true;
     var m_course_name = document.getElementById('m_course_name').value;
-    // var m_university_name = document.getElementById('m_university_name').value;
     var m_passingyear = document.getElementById('m_passingyear').value;
     var m_percentage = document.getElementById('m_percentage').value;
     if (emptyreg.test(m_course_name) || emptyreg.test(m_passingyear) || emptyreg.test(m_percentage)) {
@@ -125,14 +114,14 @@ function mastervalidation() {
 }
 
 function companyvalidation(compnayname, designaion, fromdate, todate) {
-    var emptyreg = /^\w+$/;
-    var fnamereg = /^[a-zA-Z]+$/;
-    var dateregx = /^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$/
-    var compnaynameerror = compnayname.id + "error";
-    var desiganigationerror = designaion.id + "error"
-    var fromdateerror = fromdate.id + "error";
-    var todateerror = todate.id + "error";
-    var validate = true;
+    const emptyreg = /^\w+$/;
+    const fnamereg = /^[a-zA-Z]+$/;
+    const dateregx = /^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$/
+    const compnaynameerror = compnayname.id + "error";
+    const desiganigationerror = designaion.id + "error"
+    const fromdateerror = fromdate.id + "error";
+    const todateerror = todate.id + "error";
+    const validate = true;
     console.log(compnaynameerror)
     console.log("This is Designation" + designaion)
     console.log(desiganigationerror)
@@ -250,7 +239,6 @@ function referencevalidation(name, r_number, relation) {
     var emptyreg = /^\w+$/;
     var namereg = /^[a-zA-Z]+$/;
     var phonenoregx = /^[0-9]{10}$/;
-
     var reference_nameerror = name.id + "error";
     var reference_contacterror = r_number.id + "error"
     var reference_relationerror = relation.id + "error";
@@ -359,7 +347,7 @@ function validateform() {
     var emailregx = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     var phonenoregx = /^[0-9]{10}$/;
     var pincoderegx = /^[0-9]{6}$/;
-    var dateregx = /^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$/;
+    var dateregx = /^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$/
     for (const span in errormessage) {
         errormessage[span].innerHTML = '';
     }

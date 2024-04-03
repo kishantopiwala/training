@@ -76,10 +76,8 @@
                         <%for (let value in col) { %>
                             <td>
                                 <div class="d-flex justify-content-between">
-                                    <a href="/studentlist?orderby=<%= col[value].name %>&pageid=<%=pageid%>">
                                         <%= col[value].name %>
                                             <% colname=col[value].name %>
-                                    </a>
                                     <div class="d-flex flex-column mx-2">
                                         <% if(orderby == col[value].name && sortby == 'asc') {%>
                                             <a style="margin: -5px 5px;" id="desc"

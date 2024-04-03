@@ -1,8 +1,6 @@
 
 function sscvalidation() {
     var emptyreg = /^\w+$/;
-    var fnamereg = /^[a-zA-Z]+$/;
-    var phonenoregx = /^[0-9]{10}$/;
     var percentageregx = /^[0-9]{1,3}$/;
     var year = /^[0-9]{4}$/;
     var validate = true;
@@ -31,8 +29,6 @@ function sscvalidation() {
 
 function hscvalidation() {
     var emptyreg = /^\w+$/;
-    var fnamereg = /^[a-zA-Z]+$/;
-    var phonenoregx = /^[0-9]{10}$/;
     var percentageregx = /^[0-9]{1,3}$/;
     var year = /^[0-9]{4}$/;
     var validate = true;
@@ -441,19 +437,17 @@ function validateform() {
         var referencevalidate = referencevalidation(reference_name[r], reference_contact[r], reference_relation[r]);
     }
 
-    if (current_page == 4) {
 
-        if (!language1.checked && !language2.checked && !language3.checked) {
-            document.getElementById('languageerror').innerHTML = 'Check any one language'
-            validate = false
-        }
-        else {
-        }
+    if (!language1.checked && !language2.checked && !language3.checked) {
+        document.getElementById('languageerror').innerHTML = 'Check any one language'
+        validate = false
+    }
+    else {
+    }
 
-        if (!technology1.checked && !technology2.checked && !technology3.checked && !technology4.checked) {
-            document.getElementById('technologyerror').innerHTML = 'check any one technology'
-            validate = false
-        }
+    if (!technology1.checked && !technology2.checked && !technology3.checked && !technology4.checked) {
+        document.getElementById('technologyerror').innerHTML = 'check any one technology'
+        validate = false
     }
 
     languageandabality();

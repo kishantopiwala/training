@@ -31,7 +31,7 @@ async function submitdata(data) {
     var responsedata = await response.text();
 
     console.log(responsedata)
-    if(responsedata){
+    if (responsedata) {
         window.location.replace('http://localhost:8080/task12/employees')
     }
 }
@@ -46,10 +46,10 @@ async function updatedata(data) {
         },
         body: data
     })
-    var responsedata = await response.text();
+    var responsedata = await response.json();
 
     console.log(responsedata)
-    if(responsedata){
+    if (responsedata.status == 200) {
         window.location.replace('http://localhost:8080/task12/employees')
     }
 }
@@ -130,16 +130,16 @@ if (url.includes('updateemployee')) {
         var language1ability = document.getElementsByName('language1ability[]');
         var language2ability = document.getElementsByName('language2ability[]');
         var language3ability = document.getElementsByName('language3ability[]');
-        
+
         if (result.hindi) {
             for (let hindi = 0; hindi < result.hindi.length; hindi++) {
-                
+
                 document.getElementById('language1').checked = true;
-                language1ability.forEach((ability)=>{
-                    if(ability.value == result.hindi[hindi]){
+                language1ability.forEach((ability) => {
+                    if (ability.value == result.hindi[hindi]) {
                         ability.checked = true;
                     }
-                    
+
                 })
                 // language1ability[hindi].checked = true;
             }
@@ -147,11 +147,11 @@ if (url.includes('updateemployee')) {
         if (result.english) {
             for (let english = 0; english < result.english.length; english++) {
                 document.getElementById('language2').checked = true;
-                language2ability.forEach((ability)=>{
-                    if(ability.value == result.english[english]){
+                language2ability.forEach((ability) => {
+                    if (ability.value == result.english[english]) {
                         ability.checked = true;
                     }
-                    
+
                 })
                 // language2ability[english].checked = true;
             }
@@ -159,11 +159,11 @@ if (url.includes('updateemployee')) {
         if (result.gujarati) {
             for (let gujarati = 0; gujarati < result.gujarati.length; gujarati++) {
                 document.getElementById('language3').checked = true;
-                language3ability.forEach((ability)=>{
-                    if(ability.value == result.gujarati[gujarati]){
+                language3ability.forEach((ability) => {
+                    if (ability.value == result.gujarati[gujarati]) {
                         ability.checked = true;
                     }
-                    
+
                 })
             }
         }

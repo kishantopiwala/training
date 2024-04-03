@@ -3,7 +3,7 @@ const scriptjs = require('../../public/js/jobform.js');
 function jobform(req, res) {
     res.render('pages/task10/jobform');
 }
-async function submitform(req, res) {
+async function job_submitform(req, res) {
     const { fname, lname, designation, add1, add2, email, state, city, phoneno, gender, relation_status, dob, pincode } = req.body
 
     var insert_basic_details = `insert into basic_details(first_name,last_name,email,add1,add2,phone_number,relation_status,dob,state,city,pincode,designation,gender)
@@ -24,7 +24,6 @@ async function submitform(req, res) {
             })
         })
     }
-    // console.log(typeof lastindex)
     function education_details(req, res) {
         let { course_name, passingyear, percentage } = req.body;
 
@@ -47,7 +46,6 @@ async function submitform(req, res) {
 
     function work_details(req, res) {
         let { companys, workdesignation, fromdates, todates } = req.body
-        console.log(fromdates, todates)
         companys = companys.filter((company) => company.length > 1)
         workdesignation = workdesignation.filter((des) => des.length > 1)
         fromdates = fromdates.filter((frmd) => frmd.length == 10)
@@ -102,7 +100,6 @@ async function submitform(req, res) {
     function language(req, res) {
         let { languages, language1ability, language2ability, language3ability } = req.body
         abilitys = [language1ability, language2ability, language3ability]
-        console.log(language1ability)
         for (let language = 0; language < languages.length; language++) {
 
             for (let ability = 0; ability < abilitys[language].length; ability++) {
@@ -122,7 +119,6 @@ async function submitform(req, res) {
 
     function technology(req, res) {
         let { technologys, technology1ability, technology2ability, technology3ability, technology4ability } = req.body
-        console.log(technologys)
         abilitys = [technology1ability, technology2ability, technology3ability, technology4ability]
         abilitys = abilitys.filter((ability) => ability != null && ability != undefined)
         for (let tech = 0; tech < technologys.length; tech++) {
@@ -159,8 +155,6 @@ function basic_details(req, res) {
             if (error) {
                 reject(error)
             } else {
-                // res.render('pages/jobform',{result})
-                // console.log("Basic Details" + result)
                 resolve(result)
             }
         })
@@ -187,7 +181,6 @@ function education_details(req, res) {
                 percentages = result.map(obj => {
                     return obj.percentage
                 })
-                console.log(typeof id)
                 return resolve({ id, courses, years, percentages })
             }
         })
@@ -225,10 +218,6 @@ function work_details(req, res) {
                         day = ("0" + date.getDate()).slice(-2);
                     return [date.getFullYear(), mnth, day].join("-");
                 }
-                // console.log(company_names);
-                // console.log(work_designation);
-                // console.log(fromdates);
-                // console.log(todates);
                 return resolve({ work_ids, company_names, work_designation, fromdates, todates })
             }
         })
@@ -292,15 +281,12 @@ function technologies(req, res) {
             if (error) {
                 reject(error)
             } else {
-
                 const technames = result.map((obj) => {
                     return obj.tech_name
                 })
                 const techability = result.map((obj) => {
                     return obj.ability
                 })
-                console.log(technames)
-                console.log(techability)
                 return resolve({ technames, techability })
             }
         })
@@ -314,7 +300,6 @@ function preferences(req, res) {
             if (error) {
                 return reject(error)
             } else {
-                console.log(result)
                 return resolve(result)
             }
         })
@@ -407,14 +392,12 @@ async function updateemployee(req, res) {
     updateeducation(req, res)
     function updatework(req, res) {
         let { emp_id, workid, companys, workdesignation, fromdates, todates } = req.body
-        console.log(workid)
         return new Promise((resolve, reject) => {
             workid = workid.filter((workid) => workid.length > 1)
             companys = companys.filter((company) => company.length > 1)
             workdesignation = workdesignation.filter((des) => des.length > 1)
             fromdates = fromdates.filter((frmd) => frmd.length == 10)
             todates = todates.filter((tod) => tod.length == 10)
-            console.log(workid)
             for (i = 0; i < companys.length; i++) {
                 var update_work_details = `update work_experiance set company_name = ? ,designation = ?,from_date = ?,to_date = ? where id =${workid[i]} and emp_id= ${emp_id};`
                 var insert_work_experiance = `insert into work_experiance(emp_id,company_name,designation,from_date,to_date) value(${emp_id},'${companys[i]}' ,'${workdesignation[i]}','${fromdates[i]}',' ${todates[i]}')`;
@@ -436,10 +419,8 @@ async function updateemployee(req, res) {
     }
     updatework(req, res);
     function updatelanugages(req, res) {
-        console.log(req.body)
         let { emp_id, languages, language1ability, language2ability, language3ability } = req.body
         var abilitys = [language1ability, language2ability, language3ability]
-        console.log(abilitys)
         // await deletelanguage()
         con.query(`delete from language where emp_id=${emp_id}`, (error, result) => {
             if (error) {
@@ -503,6 +484,7 @@ async function updateemployee(req, res) {
     updatetechnologies(req, res)
 
     // update reference_contact
+
     function reference_contact_update(req, res) {
 
         let { ref_id, emp_id, reference_names, reference_contacts, reference_relations } = req.body
@@ -530,6 +512,7 @@ async function updateemployee(req, res) {
     reference_contact_update(req, res)
 
     // preference detail update
+
     function preference_update(req, res) {
         let { emp_id, p_location, notice_period, expacted_ctc, current_ctc, p_department } = req.body
         var insert_reference = `insert into preferences(emp_id,pref_city,expected_ctc,current_ctc,notice_period,pref_department) value(${emp_id},'${p_location}' ,${expacted_ctc},${current_ctc},${notice_period},'${p_department}')`;
@@ -548,9 +531,9 @@ async function updateemployee(req, res) {
 }
 
 
-function deleteemployee(req,res) {
+function deleteemployee(req, res) {
     var emp_id = req.params.emp_id;
     var deleteuser = `delete from basic_details`
 }
 
-module.exports = { jobform, submitform, showemployees, getemployeedetail, updateemployee }
+module.exports = { jobform, job_submitform, showemployees, getemployeedetail, updateemployee }
