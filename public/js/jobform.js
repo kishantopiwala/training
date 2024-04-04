@@ -10,24 +10,23 @@ function sscvalidation() {
     if (emptyreg.test(ssc) || emptyreg.test(sscpassingyear) || emptyreg.test(sscpercentage)) {
         if (!emptyreg.test(ssc)) {
             document.getElementById('sscerror').innerHTML = 'ssc is Empty'
-            document.getElementById('ssc').focus()
             validate = false;
         }
         if (!year.test(sscpassingyear)) {
             document.getElementById('sscpassingyearerror').innerHTML = 'ssc Passing Year is Empty or it is not valid';
-            document.getElementById('sscpassingyear').focus();
             validate = false;
         }
         if (!percentageregx.test(sscpercentage)) {
             document.getElementById('sscpercentageerror').innerHTML = 'ssc Percentage is Empty'
-            document.getElementById('sscpercentage').focus()
             validate = false;
         }
     }
+    console.log(validate)
     return validate
 }
 
 function hscvalidation() {
+    console.log("hsc validation")
     var emptyreg = /^\w+$/;
     var percentageregx = /^[0-9]{1,3}$/;
     var year = /^[0-9]{4}$/;
@@ -428,13 +427,15 @@ function validateform() {
     const bechlorevalidate = bechlorevalidation();
     const mastervalidate = mastervalidation();
 
+    console.log("sscvalidate")
+
     for (let i = 0; i < company.length - 1; i++) {
 
-        var workvalidate = companyvalidation(company[i], workdesignation[i], fromdate[i], todate[i]);
+        validate = companyvalidation(company[i], workdesignation[i], fromdate[i], todate[i]);
     }
 
     for (let r = 0; r < reference_name.length; r++) {
-        var referencevalidate = referencevalidation(reference_name[r], reference_contact[r], reference_relation[r]);
+        validate = referencevalidation(reference_name[r], reference_contact[r], reference_relation[r]);
     }
 
 

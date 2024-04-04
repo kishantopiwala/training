@@ -80,22 +80,6 @@ function update_work(data) {
   })
 }
 
-function deletelanguage() {
-  return new Promise((resolve, reject) => {
-    con.query(`delete from language where emp_id=${emp_id}`, (error, result) => {
-      if (error) {
-        return reject(error)
-        throw error
-      }
-      else {
-        console.log("language Deleted")
-      }
-    })
-    return resolve()
-  });
-}
-
-
 function update_lanugages(data) {
   let { emp_id, languages, language1ability, language2ability, language3ability } = data
   var abilitys = [language1ability, language2ability, language3ability]
@@ -114,8 +98,8 @@ function update_lanugages(data) {
 
       for (let ability = 0; ability < abilitys[language].length; ability++) {
 
-        var insert_language = `insert into language(emp_id,lan_name,ability) value(${emp_id},'${languages[language]}','${abilitys[language][ability]}')`;
-        con.query(insert_language, (error) => {
+        var insert_language = `insert into language(emp_id,lan_name,ability) value(?,?,?)`;
+        con.query(insert_language, [emp_id, languages[language], abilitys[language][ability]], (error) => {
           if (error) {
             console.log(error)
             return reject(error)
@@ -146,8 +130,8 @@ function update_technologies(data) {
       }
     })
     for (let tech = 0; tech < technologys.length; tech++) {
-      var insert_technology = `insert into technologies(emp_id,tech_name,ability) value(${emp_id},'${technologys[tech]}','${abilitys[tech]}')`;
-      con.query(insert_technology, (error) => {
+      var insert_technology = `insert into technologies(emp_id,tech_name,ability) value(?,?,?)`;
+      con.query(insert_technology, [emp_id, technologys[tech], abilitys[tech]], (error) => {
         if (error) {
           console.log(error)
           return reject(error)

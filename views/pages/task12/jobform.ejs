@@ -254,7 +254,7 @@
                     </div>
                 </div>
                 <div class="d-flex justify-content-between my-5">
-                    <input type="text" class="form-control company" id="workid" name="workid" hidden>
+                    <input type="text" class="form-control" id="workid" name="workid" hidden>
                     <div class="mb-3">
                         <label for="company2" class="form-label">Company Name</label>
                         <input type="text" class="form-control company" id="company2" name="companys" tabindex="31">
@@ -286,9 +286,9 @@
                     <h3>Language Known</h3>
                     <div class="my-5">
                         <div class="d-flex justify-content-between my-3">
-                            
+
                             <input type="checkbox" id="language1" class="form-check-input language"
-                                onclick="languageandabality()" name="languages" value="hindi" tabindex="35"> <label
+                                onclick="ajaxlanguageandabality()" name="languages" value="hindi" tabindex="35"> <label
                                 class="form-check-label mx-3" for="language1">Hindi</label>
                             <input type="checkbox" id="ability11" class="form-check-input languageability1"
                                 name="language1ability[]" value="read" tabindex="36">
@@ -304,7 +304,7 @@
 
                         <div class="d-flex justify-content-between my-3">
                             <input type="checkbox" id="language2" class="form-check-input language"
-                                onclick="languageandabality()" name="languages" tabindex="39" value="english">
+                                onclick="ajaxlanguageandabality()" name="languages" tabindex="39" value="english">
                             <label class="form-check-label mx-3" for="language2">English</label>
                             <input type="checkbox" id="ability12" class="form-check-input languageability2"
                                 name="language2ability[]" value="read" tabindex="40">
@@ -320,8 +320,8 @@
 
                         <div class="d-flex justify-content-between my-3">
                             <input type="checkbox" id="language3" class="form-check-input language"
-                                onclick="languageandabality()" name="languages" tabindex="43" value="gujarati"> <label
-                                class="form-check-label mx-3" for="language3">Gujarati</label>
+                                onclick="ajaxlanguageandabality()" name="languages" tabindex="43" value="gujarati">
+                            <label class="form-check-label mx-3" for="language3">Gujarati</label>
                             <input type="checkbox" id="ability13" class="form-check-input languageability3"
                                 name="language3ability[]" value="read" tabindex="44">
                             <label class="form-check-label mx-3" for="ability13">Read</label>
@@ -340,9 +340,9 @@
                     <h3>Technologies Known</h3>
                     <div>
                         <div class="d-flex justify-content-between my-3">
-                            <input type="text" id="tech_id"  name="tech_id" value="" hidden>
+                            <input type="text" id="tech_id" name="tech_id" value="" hidden>
                             <input type="checkbox" id="technology1" class="form-check-input language"
-                                onclick="languageandabality()" name="technologys" tabindex="47" value="mysql">
+                                onclick="ajaxlanguageandabality()" name="technologys" tabindex="47" value="mysql">
                             <label class="form-check-label mx-3" for="technology1">Mysql</label>
                             <input type="radio" id="technologyability11" class="technologyability1"
                                 name="technology1ability" value="beginer" tabindex="48">
@@ -356,10 +356,10 @@
                             <span id="technology1error" class="text-danger errormessage"></span>
                         </div>
                         <div class="d-flex justify-content-between my-3">
-                            <input type="text" id="tech_id"  name="tech_id" value="" hidden>
+                            <input type="text" id="tech_id" name="tech_id" value="" hidden>
                             <input type="checkbox" id="technology2" class="form-check-input language"
-                                onclick="languageandabality()" name="technologys" tabindex="51" value="laravel"> <label
-                                class="form-check-label mx-3" for="technology2">Laravel</label>
+                                onclick="ajaxlanguageandabality()" name="technologys" tabindex="51" value="laravel">
+                            <label class="form-check-label mx-3" for="technology2">Laravel</label>
                             <input type="radio" id="technologyability12" class="technologyability2"
                                 name="technology2ability" value="beginer" tabindex="52"> <label
                                 class="form-check-label mx-3" for="technologyability12">Beginer</label>
@@ -372,9 +372,9 @@
                             <span id="technology2error" class="text-danger errormessage"></span>
                         </div>
                         <div class="d-flex justify-content-between my-3">
-                            <input type="text" id="tech_id"  name="tech_id" value="" hidden>
+                            <input type="text" id="tech_id" name="tech_id" value="" hidden>
                             <input type="checkbox" id="technology3" class="form-check-input language"
-                                onclick="languageandabality()" name="technologys" tabindex="55" value="node"> <label
+                                onclick="ajaxlanguageandabality()" name="technologys" tabindex="55" value="node"> <label
                                 class="form-check-label mx-3" for="technology3">Node</label>
                             <input type="radio" id="technologyability13" class="technologyability3"
                                 name="technology3ability" value="beginer" tabindex="56"> <label
@@ -388,10 +388,10 @@
                             <span id="technology3error" class="text-danger errormessage"></span>
                         </div>
                         <div class="d-flex justify-content-between my-3">
-                            <input type="text" id="tech_id"  name="tech_id" value="" hidden>
+                            <input type="text" id="tech_id" name="tech_id" value="" hidden>
                             <input type="checkbox" id="technology4" class="form-check-input language"
-                                onclick="languageandabality()" name="technologys" tabindex="59" value="python"> <label
-                                class="form-check-label mx-3" for="technology4">Python</label>
+                                onclick="ajaxlanguageandabality()" name="technologys" tabindex="59" value="python">
+                            <label class="form-check-label mx-3" for="technology4">Python</label>
                             <input type="radio" id="technologyability14" class="technologyability4"
                                 name="technology4ability" value="beginer" tabindex="60"> <label
                                 class="form-check-label mx-3" for="technologyability14">Beginer</label>
@@ -415,13 +415,13 @@
                     <div>
                         <label class="form-label" for="reference_name">Name</label>
                         <input type="text" class="form-control reference_name" id="reference_name"
-                        name="reference_names" tabindex="63">
+                            name="reference_names" tabindex="63">
                         <span id="reference_nameerror" class="text-danger errormessage"></span>
                     </div>
                     <div>
                         <label class="form-label" for="referance_contact">Contact Number</label>
                         <input type="text" class="form-control reference_contact" id="reference_contact"
-                        name="reference_contacts" tabindex="64">
+                            name="reference_contacts" tabindex="64">
                         <span id="reference_contacterror" class="text-danger errormessage"></span>
                     </div>
                     <div>
@@ -453,7 +453,7 @@
                         <span id="reference_relation2error" class="text-danger errormessage"></span>
                     </div>
                 </div>
-                
+
             </div>
 
             <div id="Preferences_details" class="formcomponents">

@@ -107,8 +107,8 @@ function language(data, res, lastindex) {
     console.log(language1ability)
     for (let language = 0; language < languages.length; language++) {
       for (let ability = 0; ability < abilitys[language].length; ability++) {
-        var insert_language = `insert into language(emp_id,lan_name,ability) value(${lastindex},'${languages[language]}','${abilitys[language][ability]}')`;
-        con.query(insert_language, (error) => {
+        var insert_language = `insert into language(emp_id,lan_name,ability) value(?,?,?)`;
+        con.query(insert_language,[lastindex,languages[language],abilitys[language][ability]],(error) => {
           if (error) {
             console.log(error)
             res.send("Error in inserting Data")
@@ -130,7 +130,7 @@ function technology(data, res, lastindex) {
     abilitys = abilitys.filter((ability) => ability != null && ability != undefined)
     for (let tech = 0; tech < technologys.length; tech++) {
       var insert_reference = `insert into technologies(emp_id,tech_name,ability) value(${lastindex},'${technologys[tech]}','${abilitys[tech]}')`;
-      con.query(insert_reference, (error) => {
+      con.query(insert_reference,[lastindex,technologys[tech],abilitys[tech]], (error) => {
         if (error) {
           console.log(error)
           res.send("Error in inserting Data")

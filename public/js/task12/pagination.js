@@ -1,7 +1,7 @@
 const totalpages = 6
 var current_page = 1;
 const formcomponents = document.getElementsByClassName('formcomponents');
-document.getElementById('next').addEventListener('click', next_page);
+
 document.getElementById('previous').addEventListener('click', previous_page);
 function page() {
     const basic_details = document.getElementById('Basic_details');
@@ -54,7 +54,7 @@ function page() {
             break;
         case 6:
             showelement(preferences_details);
-
+            console.log(current_page)
             hideelement(basic_details)
             hideelement(education_details)
             hideelement(language_technologies)
@@ -77,7 +77,8 @@ var hidealleleents = () => {
     }
 }
 function next_page() {
-    if (validateform() == true) {
+    validate = true
+    if (ajaxvalidateform() == true) {
 
         if (current_page < totalpages) {
             current_page = current_page + 1;
@@ -90,6 +91,7 @@ function next_page() {
         }
     }
 }
+document.getElementById('next').addEventListener('click', next_page);
 function previous_page() {
     document.getElementById('next').style.display = '';
     document.getElementById('submit').style.display = 'none';

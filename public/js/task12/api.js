@@ -5,7 +5,10 @@ if (url.includes('updateemployee')) {
         event.preventDefault();
         const formdata = new FormData(form)
         const data = new URLSearchParams(formdata).toString()
-        updatedata(data)
+        if (ajaxvalidateform() == true) {
+            console.log("form Updated")
+            // updatedata(data)
+        }
     })
 }
 else {
@@ -13,13 +16,15 @@ else {
         event.preventDefault();
         const formdata = new FormData(form)
         const data = new URLSearchParams(formdata).toString()
-        submitdata(data)
+        if (ajaxvalidateform() == true) {
+            console.log("form Submited")
+            // submitdata(data)
+        }
     })
 }
 
 async function submitdata(data) {
-    // validateform();
-    const response = await fetch('http://localhost:8080/task12/submitdetails', {
+    const response = await fetch('http://localhost:8080/ajax/submitdetails', {
         method: 'POST',
         headers: {
             "content-Type": "application/x-www-form-urlencoded",
@@ -32,13 +37,12 @@ async function submitdata(data) {
 
     console.log(responsedata)
     if (responsedata) {
-        window.location.replace('http://localhost:8080/task12/employees')
+        window.location.replace('http://localhost:8080/ajax/employees')
     }
 }
 
 async function updatedata(data) {
-    // validateform();
-    const response = await fetch('http://localhost:8080/task12/updateemployee', {
+    const response = await fetch('http://localhost:8080/ajax/updateemployee', {
         method: 'POST',
         headers: {
             "content-Type": "application/x-www-form-urlencoded",
@@ -50,12 +54,12 @@ async function updatedata(data) {
 
     console.log(responsedata)
     if (responsedata.status == 200) {
-        window.location.replace('http://localhost:8080/task12/employees')
+        window.location.replace('http://localhost:8080/ajax/employees')
     }
 }
 
 async function getuserdata() {
-    var response = await fetch('http://localhost:8080/task12/getemployeedetail')
+    var response = await fetch('http://localhost:8080/ajax/getemployeedetail')
     var result = await response.json()
 }
 
@@ -63,13 +67,11 @@ if (url.includes('updateemployee')) {
     var emp_id = Number(url.slice(url.lastIndexOf('/') + 1))
     var body = document.getElementById('body')
     setdata()
-    // body.addEventListener('load', setdata())
 
 
     async function setdata() {
-        var response = await fetch(`http://localhost:8080/task12/getemployeedetail/${emp_id}`);
-        var result = await response.json();
-
+        const response = await fetch(`http://localhost:8080/ajax/getemployeedetail/${emp_id}`);
+        const result = await response.json();
         document.getElementById('emp_id').value = result.emp_id;
         document.getElementById('fname').value = result.first_name;
         document.getElementById('lname').value = result.last_name;
@@ -81,27 +83,27 @@ if (url.includes('updateemployee')) {
         document.getElementById('email').value = result.email;
         document.getElementById('phoneno').value = result.phone_number;
         document.getElementById('dob').value = result.dob;
-        var state = document.getElementById('state');
+        const state = document.getElementById('state');
         state.value = result.state
-        var gender = result.gender
-        var male = document.getElementById('male');
-        var female = document.getElementById('female');
+        const gender = result.gender
+        const male = document.getElementById('male');
+        const female = document.getElementById('female');
         if (gender == 1) {
             male.checked = true;
         }
         else {
             female.checked = true;
         }
-        var relation_status = document.getElementById('relation_status')
+        let relation_status = document.getElementById('relation_status')
         console.log(result.relation_status)
         relation_status = result.relations_status
 
 
         // Set education Details
-        var edu_id = document.getElementsByName('edu_id');
-        var coursesnames = document.getElementsByName('course_name');
-        var passingyear = document.getElementsByName('passingyear');
-        var percentage = document.getElementsByName('percentage');
+        let edu_id = document.getElementsByName('edu_id');
+        let coursesnames = document.getElementsByName('course_name');
+        let passingyear = document.getElementsByName('passingyear');
+        let percentage = document.getElementsByName('percentage');
 
         for (let course = 0; course < result.courses.length; course++) {
 
@@ -113,11 +115,11 @@ if (url.includes('updateemployee')) {
 
         // Set Work Details
 
-        var workid = document.getElementsByName('workid');
-        var companys = document.getElementsByName('companys');
-        var workdesignation = document.getElementsByName('workdesignation');
-        var fromdates = document.getElementsByName('fromdates');
-        var todates = document.getElementsByName('todates');
+        let workid = document.getElementsByName('workid');
+        let companys = document.getElementsByName('companys');
+        let workdesignation = document.getElementsByName('workdesignation');
+        let fromdates = document.getElementsByName('fromdates');
+        let todates = document.getElementsByName('todates');
         for (let work = 0; work < result.company_names.length; work++) {
             workid[work].value = result.work_ids[work]
             companys[work].value = result.company_names[work]
@@ -127,9 +129,9 @@ if (url.includes('updateemployee')) {
         }
 
         // set Language and technologies
-        var language1ability = document.getElementsByName('language1ability[]');
-        var language2ability = document.getElementsByName('language2ability[]');
-        var language3ability = document.getElementsByName('language3ability[]');
+        let language1ability = document.getElementsByName('language1ability[]');
+        let language2ability = document.getElementsByName('language2ability[]');
+        let language3ability = document.getElementsByName('language3ability[]');
 
         if (result.hindi) {
             for (let hindi = 0; hindi < result.hindi.length; hindi++) {
@@ -141,7 +143,6 @@ if (url.includes('updateemployee')) {
                     }
 
                 })
-                // language1ability[hindi].checked = true;
             }
         }
         if (result.english) {
@@ -153,7 +154,6 @@ if (url.includes('updateemployee')) {
                     }
 
                 })
-                // language2ability[english].checked = true;
             }
         }
         if (result.gujarati) {
@@ -171,9 +171,9 @@ if (url.includes('updateemployee')) {
         // set Technologies Value
 
         for (let tech = 0; tech < result.technames.length; tech++) {
-            var technologys = document.getElementsByName('technologys');
-            var technology1ability = document.getElementsByName('technology1ability');
-            var tech_id = document.getElementsByName('tech_id');
+            let technologys = document.getElementsByName('technologys');
+            let technology1ability = document.getElementsByName('technology1ability');
+            let tech_id = document.getElementsByName('tech_id');
             technologys[tech].checked = true;
             tech_id[tech].value = result.techid[tech];
             for (let tech1 = 0; tech1 < 3; tech1++) {
@@ -184,10 +184,10 @@ if (url.includes('updateemployee')) {
         }
 
         // set referance Contact Value
-        var reference_names = document.getElementsByName('reference_names');
-        var reference_contacts = document.getElementsByName('reference_contacts');
-        var reference_relations = document.getElementsByName('reference_relations');
-        var reference_id = document.getElementsByName('ref_id');
+        let reference_names = document.getElementsByName('reference_names');
+        let reference_contacts = document.getElementsByName('reference_contacts');
+        let reference_relations = document.getElementsByName('reference_relations');
+        let reference_id = document.getElementsByName('ref_id');
 
         for (let ref = 0; ref < result.ref_name.length; ref++) {
             reference_id[ref].value = result.ref_id[ref];

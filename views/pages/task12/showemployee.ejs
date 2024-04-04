@@ -22,7 +22,7 @@
 
 <body class="container" onload="getemployees()">
     <div>
-        <a href="/task12/jobform" class="btn btn-primary">Add Employee</a>
+        <a href="/ajax/jobform" class="btn btn-primary">Add Employee</a>
     </div>
     <h1>Get Employee Details</h1>
 
@@ -43,7 +43,7 @@
 </body>
 <script>
     async function getemployees() {
-        var response = await fetch('http://localhost:8080/task12/getemployee');
+        var response = await fetch('http://localhost:8080/ajax/getemployee');
         var data = await response.json();
         var thead = document.getElementById('thead');
         var tbody = document.getElementById('tbody');
@@ -54,13 +54,13 @@
             var tr;
             var employeeid;
             tr = document.createElement('tr')
-            Object.keys(data[i]).forEach((element)=>{
-                employeeid =data[i].emp_id
+            Object.keys(data[i]).forEach((element) => {
+                employeeid = data[i].emp_id
                 td = document.createElement('td')
                 td.textContent = data[i][element]
                 tr.append(td)
             })
-            tr.innerHTML += `<td><a href='/task12/updateemployeeform/${employeeid}' class='btn btn-primary'>Update</a></td>`
+            tr.innerHTML += `<td><a href='/ajax/updateemployeeform/${employeeid}' class='btn btn-primary'>Update</a></td>`
             tbody.append(tr)
         }
     }

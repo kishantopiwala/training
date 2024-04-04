@@ -122,7 +122,6 @@ function select_languages(emp_id) {
         }, {})
         return resolve(lanuages)
       }
-      // }
     })
   })
 }

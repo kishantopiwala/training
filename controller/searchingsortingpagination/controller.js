@@ -30,7 +30,22 @@ const studentlist = (req, res) => {
         var start = (pagenumber - 1) * recordsinonepage;
     }
 
-    var select = `select stu_id As StudentID,fname As FirstName ,lname As LastName, email As Email,phoneno As MobileNumber,age as Age, gender As Gender, address As Address, city As City,state As  State ,postalcode As PinCode from student limit ${start},${recordsinonepage}`;
+    let totalpage = 0;
+
+    let selectforpage = `select count(stu_id) as totalrecord from student`;
+    if (studentid || fname || lname || email || phoneno || city || state) {
+        selectforpage = `select count(stu_id) as totalrecord from student where stu_id like '${studentid}' or fname like '${fname}' or email like '${email}' or lname like '${lname}' or phoneno like '${phoneno}' 
+        or city like '${city}' or state like '${state}'`;
+    }
+
+    con.query(selectforpage, (error, result) => {
+        if (error) {
+            console.log(error)
+        }
+        totalpage = result[0].totalrecord
+    })
+
+    let select = `select stu_id As StudentID,fname As FirstName ,lname As LastName, email As Email,phoneno As MobileNumber,age as Age, gender As Gender, address As Address, city As City,state As  State ,postalcode As PinCode from student limit ${start},${recordsinonepage}`;
     if (orderby) {
         if (sortby) {
             select = `select stu_id As StudentID, fname As FirstName, lname As LastName, email As Email, phoneno As MobileNumber,age as Age, gender As Gender, address As Address, city As City, state As  State,postalcode As PinCode from student order by ${orderby} ${sortby} limit ${start}, ${recordsinonepage}`;
@@ -42,25 +57,31 @@ const studentlist = (req, res) => {
             }
         }
     }
-    
-    con.query(select, (err, row, col) => {
-        if (err) {
-            throw err
-        } else {
-            res.render('pages/task8/studentlist', { row: row, col: col, pageid: pagenumber, orderby: orderby, sortby: sortby, fname: fname, state: state, city: city, lname: lname });
-        }
-    });
+    try {
+        con.query(select, (err, row, col) => {
+            if (err) {
+                throw err
+            } else {
+                res.render('pages/task8/studentlist', { row: row, col: col, pageid: pagenumber, orderby: orderby, sortby: sortby, fname: fname, state: state, city: city, lname: lname, totalpage: Math.ceil(totalpage / recordsinonepage) });
+            }
+        });
+    } catch (error) {
+        console.log(error)
+        const errormsg = "Somthing Went wrong"
+        res.send(errormsg)
+    }
+
 }
 
 const attendance = (req, res) => {
 
-    var sort = 0;
+    let sort = 0;
     let month = req.query.month;
-    var orderby = req.query.orderby;
+    let orderby = req.query.orderby;
     let recordsinonepage = 20;
-    var pagenumber = req.query.pageid;
+    let pagenumber = req.query.pageid;
 
-    var sortby = 'asc';
+    let sortby = 'asc';
     if (sortby) {
         sortby = req.query.sortby;
     }
@@ -74,7 +95,7 @@ const attendance = (req, res) => {
     else {
         var start = (pagenumber - 1) * recordsinonepage;
     }
-    var select = `select stu_id As StudentID,count(stu_id) As TotalPresentDays,round(count(stu_id) *100 / 91,2) As Precentage from attendance where p_a = 1 group by stu_id limit ${start},${recordsinonepage};`
+    let select = `select stu_id As StudentID,count(stu_id) As TotalPresentDays,round(count(stu_id) *100 / 91,2) As Precentage from attendance where p_a = 1 group by stu_id limit ${start},${recordsinonepage};`
     if (month) {
         select = `select attendance.stu_id As StudentID,fname as Name,count(attendance.stu_id) As TotalPresentDays,round(count(attendance.stu_id)*100 / (select count(a_date) from attendance where month(a_date)=${month} and attendance.stu_id = 1),2) As
         Precentage from attendance LEFT JOIN student on student.stu_id = attendance.stu_id where p_a = 1 and month(a_date) = ${month} group by attendance.stu_id limit ${start},${recordsinonepage};`
@@ -93,20 +114,26 @@ const attendance = (req, res) => {
             }
         }
     }
-    con.query(select, (err, row, col) => {
-        if (err) {
-            throw err
-        } else {
-            res.render('pages/task8/attendancelist', { row: row, col: col, pageid: pagenumber, orderby: orderby, month: month, sortby: sortby, sort: sort });
-        }
-    });
+    try {
+        con.query(select, (err, row, col) => {
+            if (err) {
+                console.log(err)
+                res.send("Somthing Went Wrong")
+            } else {
+                res.render('pages/task8/attendancelist', { row: row, col: col, pageid: pagenumber, orderby: orderby, month: month, sortby: sortby, sort: sort });
+            }
+        });
+    } catch (error) {
+        res.send("Somthing Went Wrong")
+    }
+
 }
 
 const result = (req, res) => {
 
-    var orderby = req.query.orderby;
+    let orderby = req.query.orderby;
     let recordsinonepage = 10;
-    var pagenumber = req.query.pageid;
+    let pagenumber = req.query.pageid;
 
     if (pagenumber <= 0 || pagenumber == null) {
         pagenumber = 1;
@@ -118,7 +145,7 @@ const result = (req, res) => {
     else {
         var start = (pagenumber - 1) * recordsinonepage;
     }
-    var select = `select * ,sum(TerminalTheoryMarks+PrimilaryTheory+FinalTheory) as TotalTheoryMarks,
+    let select = `select * ,sum(TerminalTheoryMarks+PrimilaryTheory+FinalTheory) as TotalTheoryMarks,
     sum(TerminalPraticalMarks + PrimilaryPratical +FinalPratical) as TotalPraticalMarks,
     sum(TerminalTheoryMarks+PrimilaryTheory+FinalTheory+TerminalPraticalMarks + PrimilaryPratical +FinalPratical) as TotalMarks
      from
@@ -133,19 +160,24 @@ const result = (req, res) => {
       left join exam on result.ex_id = exam.ex_id Group by StudentID limit ${start},${recordsinonepage}
     ) As t Group by StudentID;`
 
-    con.query(select, (err, row, col) => {
-        if (err) {
-            throw err
-        } else {
-            res.render('pages/task8/resultlist', { row: row, col: col, pageid: pagenumber, orderby: orderby });
-        }
-    });
+    try {
+        con.query(select, (err, row, col) => {
+            if (err) {
+                throw err
+            } else {
+                res.render('pages/task8/resultlist', { row: row, col: col, pageid: pagenumber, orderby: orderby });
+            }
+        });
+    } catch (error) {
+        res.send("Something Went wrong")
+    }
+
 }
 
 const viewreport = (req, res) => {
-    var studentid = Number(req.params.stu_id);
-    var StudentName = req.params.stu_name;
-    var select = `select * ,(TerminalTheoryMarks+PrimilaryTheory+FinalTheory) as TotalTheoryMarks,
+    let studentid = Number(req.params.stu_id);
+    let StudentName = req.params.stu_name;
+    let select = `select * ,(TerminalTheoryMarks+PrimilaryTheory+FinalTheory) as TotalTheoryMarks,
     (TerminalPraticalMarks + PrimilaryPratical +FinalPratical) as TotalPraticalMarks,
     (TerminalTheoryMarks+PrimilaryTheory+FinalTheory+TerminalPraticalMarks + PrimilaryPratical +FinalPratical) as TotalMarks
      from
@@ -162,28 +194,34 @@ const viewreport = (req, res) => {
     Left Join exam on result.ex_id = exam.ex_id where result.stu_id = ${studentid} 
     group by subject.sub_name
     ) as t;`
-    con.query(select, (err, row, col) => {
-        if (err) {
-            throw err
-        } else {
-            res.render('pages/task8/viewreport', { row: row, col: col, studentid: studentid, StudentName: StudentName });
-        }
-    });
+
+    try {
+        con.query(select, (err, row, col) => {
+            if (err) {
+                throw err
+            } else {
+                res.render('pages/task8/viewreport', { row: row, col: col, studentid: studentid, StudentName: StudentName });
+            }
+        });
+    } catch (error) {
+        res.send("Somthing Went Wrong")
+    }
+
 }
 
 const dlimitersearch = (req, res) => {
-    var search = req.body.filter;
-    var start = 0;
-    var recordsinonepage = 50;
+    let search = req.body.filter;
+    let start = 0;
+    let recordsinonepage = 50;
     if (search != null) {
 
-        var fnamesymbol = [];
-        var lnamesymbol = [];
-        var emailsymbol = [];
-        var agesymbol = [];
-        var mobilesymbol = [];
-        var citysymbol = [];
-        var dlimiters = /[_$^{}:]/;
+        let fnamesymbol = [];
+        let lnamesymbol = [];
+        let emailsymbol = [];
+        let agesymbol = [];
+        let mobilesymbol = [];
+        let citysymbol = [];
+        let dlimiters = /[_$^{}:]/;
         for (let d = 0; d < search.length; d++) {
             if (search[d].match(dlimiters)) {
                 switch (search[d]) {
@@ -217,6 +255,7 @@ const dlimitersearch = (req, res) => {
         var age = [];
         var mobileno = [];
         var city = [];
+
         function splitvalues(dlimiterssymbols) {
             for (let i = dlimiterssymbols + 1; i < search.length; i++) {
                 if (search[i].match(dlimiters)) {
@@ -243,7 +282,6 @@ const dlimitersearch = (req, res) => {
 
         function addquery(dataarray, stringname) {
             for (let data = 0; data < dataarray.length; data++) {
-                console.log(dataarray[data])
                 if (data == 0) {
                     query += `(`
                 }
@@ -265,13 +303,11 @@ const dlimitersearch = (req, res) => {
         addquery(age, 'age');
         addquery(mobileno, 'phoneno');
         addquery(city, 'city')
-
         query = query.slice(0, -3)
-        console.log(query)
 
     }
 
-    var select = `select stu_id As StudentID, fname As FirstName, lname As LastName, email As Email, phoneno As MobileNumber,age as Age, gender As Gender,
+    let select = `select stu_id As StudentID, fname As FirstName, lname As LastName, email As Email, phoneno As MobileNumber,age as Age, gender As Gender,
                  address As Address, city As City, state As  State,postalcode As PinCode from student limit ${start}, ${recordsinonepage}`;
     if (fname, lname, email, age, mobileno, city != null) {
         con.query(query, (err, row, col) => {

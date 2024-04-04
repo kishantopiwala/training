@@ -7,14 +7,14 @@ const { select_basic_details, select_education_details, select_work_details, sel
 const {
   updatebasic_details, update_education, update_work, update_lanugages, update_technologies, update_reference_contact, update_preference, } = require("../commonFunction/employeeupdatefunction.js");
 
-function jobform(req, res) {
+function ajax_jobform(req, res) {
   res.render("pages/task12/jobform");
 }
-function submitform(req, res) {
+function ajax_submitform(req, res) {
   // const { fname, lname, designation, add1, add2, email, state, city, phoneno, gender, relation_status, dob, pincode } = req.body
   let insert_basic_details = `insert into basic_details(first_name,last_name,email,add1,add2,phone_number,relation_status,dob,state,city,pincode,designation,gender)
     values(?,?,?,?,?,?,?,?,?,?,?,?,?) `;
-
+  console.log(req.body)
   basic_details(insert_basic_details, req.body).then((lastindex) => {
     console.log(lastindex);
     education_details(req.body, res, lastindex);
@@ -27,11 +27,11 @@ function submitform(req, res) {
   });
 }
 
-function renderemployee(req, res) {
+function ajax_renderemployee(req, res) {
   res.render("pages/task12/showemployee");
 }
 
-async function showemployees(req, res) {
+async function ajax_showemployees(req, res) {
   var selectemployee =
     "select emp_id,first_name,last_name,email,add1 from basic_details";
   var promise = await new Promise((resolve, reject) => {
@@ -46,7 +46,7 @@ async function showemployees(req, res) {
   res.send(promise);
 }
 
-async function getemployeedetail(req, res) {
+async function ajax_getemployeedetail(req, res) {
   var emp_id = req.params.emp_id;
   var result;
   var basic = await select_basic_details(emp_id);
@@ -88,7 +88,8 @@ async function getemployeedetail(req, res) {
 
 //  education_details(req,res);
 
-async function updateemployee(req, res) {
+async function ajax_updateemployee(req, res) {
+  console.log(req.body)
   try {
     await updatebasic_details(req.body);
     await update_education(req.body)
@@ -112,10 +113,10 @@ async function updateemployee(req, res) {
 }
 
 module.exports = {
-  jobform,
-  submitform,
-  showemployees,
-  getemployeedetail,
-  updateemployee,
-  renderemployee,
+  ajax_jobform,
+  ajax_submitform,
+  ajax_showemployees,
+  ajax_getemployeedetail,
+  ajax_updateemployee,
+  ajax_renderemployee,
 };

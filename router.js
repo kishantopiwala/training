@@ -8,11 +8,18 @@ const { home, submitform, registrationform, activationlink, activateaccount,
 
 const { webpage1, webpage2, webpage3 } = require('./controller/webpagecontroller')
 
-const { studentlist, attendance, dlimitersearch, result, viewreport } = require('./controller/task8/controller');
+const { studentlist, attendance, dlimitersearch, result, viewreport } = require('./controller/searchingsortingpagination/controller');
 
-const { jobform, job_submitform, showemployees, getemployeedetail, updateemployee, education_details } = require('./controller/task10/controller')
+const { jobform, job_submitform, showemployees, getemployeedetail, updateemployee } = require('./controller/jobform/controller')
 
-const { viewposts, specificpost } = require('./controller/task11/controller')
+const { ajax_jobform,
+    ajax_submitform,
+    ajax_showemployees,
+    ajax_getemployeedetail,
+    ajax_updateemployee,
+    ajax_renderemployee,} = require('./controller/ajaxjobform/controller')
+
+const { viewposts, specificpost } = require('./controller/apicall/controller')
 
 
 routes.use(bodyparser.json());
@@ -76,8 +83,12 @@ routes.get('/specificpost/:postid', authorization, specificpost)
 
 // Task 12 Job From With AJAX
 
+routes.get('/ajax/jobform', authorization, ajax_jobform);
+routes.post('/ajax/submitdetails', authorization, ajax_submitform)
+routes.get('/ajax/employees', authorization, ajax_renderemployee)
+routes.get('/ajax/getemployee', authorization, ajax_showemployees)
+routes.get('/ajax/updateemployeeform/:emp_id', authorization, ajax_jobform)
+routes.get('/ajax/getemployeedetail/:emp_id?', authorization, ajax_getemployeedetail)
+routes.post('/ajax/updateemployee', authorization, ajax_updateemployee)
 
-routes.use((req, res, next) => {
-    next()
-});
 module.exports = routes;
