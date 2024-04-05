@@ -5,9 +5,11 @@ if (url.includes('updateemployee')) {
         event.preventDefault();
         const formdata = new FormData(form)
         const data = new URLSearchParams(formdata).toString()
+        console.log(validate)
+
         if (ajaxvalidateform() == true) {
             console.log("form Updated")
-            // updatedata(data)
+            updatedata(data)
         }
     })
 }
@@ -15,10 +17,12 @@ else {
     form.addEventListener('submit', function (event) {
         event.preventDefault();
         const formdata = new FormData(form)
+        console.log(validate)
+
         const data = new URLSearchParams(formdata).toString()
         if (ajaxvalidateform() == true) {
             console.log("form Submited")
-            // submitdata(data)
+            submitdata(data)
         }
     })
 }
@@ -35,7 +39,6 @@ async function submitdata(data) {
 
     var responsedata = await response.text();
 
-    console.log(responsedata)
     if (responsedata) {
         window.location.replace('http://localhost:8080/ajax/employees')
     }
@@ -52,7 +55,6 @@ async function updatedata(data) {
     })
     var responsedata = await response.json();
 
-    console.log(responsedata)
     if (responsedata.status == 200) {
         window.location.replace('http://localhost:8080/ajax/employees')
     }
@@ -95,7 +97,6 @@ if (url.includes('updateemployee')) {
             female.checked = true;
         }
         let relation_status = document.getElementById('relation_status')
-        console.log(result.relation_status)
         relation_status = result.relations_status
 
 
@@ -169,16 +170,16 @@ if (url.includes('updateemployee')) {
         }
 
         // set Technologies Value
-
+        let technologys = document.getElementsByName('technologys[]');
+        let tech_id = document.getElementsByName('tech_id');
         for (let tech = 0; tech < result.technames.length; tech++) {
-            let technologys = document.getElementsByName('technologys');
-            let technology1ability = document.getElementsByName('technology1ability');
-            let tech_id = document.getElementsByName('tech_id');
             technologys[tech].checked = true;
             tech_id[tech].value = result.techid[tech];
-            for (let tech1 = 0; tech1 < 3; tech1++) {
-                if (document.getElementsByName(`technology${tech1 + 1}ability`)[tech1].value == result.techability[tech]) {
-                    document.getElementsByName(`technology${tech1 + 1}ability`)[tech1].checked = true
+
+            for (let techability = 0; techability < 3; techability++) {
+
+                if (document.getElementsByName(`technology${tech + 1}ability[]`)[techability].value == result.techability[tech]) {
+                    document.getElementsByName(`technology${tech + 1}ability[]`)[techability].checked = true;
                 }
             }
         }

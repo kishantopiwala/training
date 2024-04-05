@@ -15,16 +15,16 @@ function ajax_submitform(req, res) {
   let insert_basic_details = `insert into basic_details(first_name,last_name,email,add1,add2,phone_number,relation_status,dob,state,city,pincode,designation,gender)
     values(?,?,?,?,?,?,?,?,?,?,?,?,?) `;
   console.log(req.body)
-  basic_details(insert_basic_details, req.body).then((lastindex) => {
-    console.log(lastindex);
-    education_details(req.body, res, lastindex);
-    work_details(req.body, res, lastindex);
-    reference_contact(req.body, res, lastindex);
-    preference(req.body, res, lastindex);
-    language(req.body, res, lastindex);
-    technology(req.body, res, lastindex);
-    res.redirect("/task12/employees");
-  });
+  // basic_details(insert_basic_details, req.body).then((lastindex) => {
+  //   console.log(lastindex);
+  //   education_details(req.body, res, lastindex);
+  //   work_details(req.body, res, lastindex);
+  //   reference_contact(req.body, res, lastindex);
+  //   preference(req.body, res, lastindex);
+  //   language(req.body, res, lastindex);
+  //   technology(req.body, res, lastindex);
+  //   res.redirect("/task12/employees");
+  // });
 }
 
 function ajax_renderemployee(req, res) {
@@ -82,14 +82,13 @@ async function ajax_getemployeedetail(req, res) {
   result["current_ctc"] = pref[0] ? pref[0].current_ctc : "";
   result["notice"] = pref[0] ? pref[0].notice_period : "";
   result["pref_department"] = pref[0] ? pref[0].pref_department : "";
-  console.log(result);
+  // console.log(result);
   res.send(result);
 }
 
 //  education_details(req,res);
 
 async function ajax_updateemployee(req, res) {
-  console.log(req.body)
   try {
     await updatebasic_details(req.body);
     await update_education(req.body)

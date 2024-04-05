@@ -1,4 +1,4 @@
-const emptyreg = /^\w+$/;
+const emptyreg = /^\S+$/;
 const percentageregx = /^[0-9]{1,3}$/;
 const year = /^[0-9]{4}$/;
 const fnamereg = /^[a-zA-Z]+$/;
@@ -10,17 +10,16 @@ const salaryregx = /^(?!0+(?:\.0+)?$)[0-9]+(?:\.[0-9]+)?$/
 const pincoderegx = /^[0-9]{6}$/;
 const emailregx = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
-
 let validate = true;
-
 
 function ajaxsscvalidation() {
     const ssc = document.getElementById('ssc').value;
     const sscpassingyear = document.getElementById('sscpassingyear').value;
     const sscpercentage = document.getElementById('sscpercentage').value;
-    if (emptyreg.test(ssc) || emptyreg.test(sscpassingyear) || emptyreg.test(sscpercentage)) {
-        if (!emptyreg.test(ssc)) {
-            document.getElementById('sscerror').innerHTML = 'ssc is Empty'
+    console.log(ssc)
+    if (ssc != '' || sscpassingyear != '' || sscpercentage != '') {
+        if (!namereg.test(ssc)) {
+            document.getElementById('sscerror').innerHTML = 'ssc is Empty or should not contain space'
             document.getElementById('ssc').focus()
             validate = false;
         }
@@ -42,7 +41,7 @@ function ajaxhscvalidation() {
     const hscpassingyear = document.getElementById('hscpassingyear').value;
     const hscpercentage = document.getElementById('hscpercentage').value;
 
-    if (emptyreg.test(hsc) || emptyreg.test(hscpassingyear) || emptyreg.test(hscpercentage)) {
+    if (hsc != '' || hscpassingyear != '' || hscpercentage != '') {
         if (!emptyreg.test(hsc)) {
             document.getElementById('hscerror').innerHTML = 'hsc is Empty'
             document.getElementById('hsc').focus()
@@ -65,7 +64,7 @@ function ajaxbechlorevalidation() {
     const b_course_name = document.getElementById('b_course_name').value;
     const b_passingyear = document.getElementById('b_passingyear').value;
     const b_percentage = document.getElementById('b_percentage').value;
-    if (emptyreg.test(b_course_name) || emptyreg.test(b_passingyear) || emptyreg.test(b_percentage)) {
+    if (b_course_name != '' || b_passingyear != '' || b_percentage != '') {
         if (!emptyreg.test(b_course_name)) {
             document.getElementById('b_course_name').focus()
             document.getElementById('b_course_nameerror').innerHTML = 'Course name is Empty'
@@ -88,7 +87,7 @@ function ajaxmastervalidation() {
     const m_course_name = document.getElementById('m_course_name').value;
     const m_passingyear = document.getElementById('m_passingyear').value;
     const m_percentage = document.getElementById('m_percentage').value;
-    if (emptyreg.test(m_course_name) || emptyreg.test(m_passingyear) || emptyreg.test(m_percentage)) {
+    if (m_course_name != '' || m_passingyear != '' || m_percentage != '') {
 
         if (!emptyreg.test(m_course_name)) {
             document.getElementById('m_course_name').focus()
@@ -114,7 +113,7 @@ function ajaxcompanyvalidation(compnayname, designaion, fromdate, todate) {
     const fromdateerror = fromdate.id + "error";
     const todateerror = todate.id + "error";
 
-    if (emptyreg.test(compnayname.value) || emptyreg.test(designaion.value) || emptyreg.test(fromdate.value) || emptyreg.test(todate.value)) {
+    if (compnayname.value != '' || designaion.value != '' || fromdate.value != '' || todate.value != '') {
 
         if (!fnamereg.test(compnayname.value)) {
             document.getElementById(compnaynameerror).innerHTML = 'Company name is Empty';
@@ -126,12 +125,10 @@ function ajaxcompanyvalidation(compnayname, designaion, fromdate, todate) {
         }
 
         if (!dateregx.test(fromdate.value)) {
-            // fromdate.focus();
             document.getElementById(fromdateerror).innerHTML = 'select date';
             validate = false;
         }
         if (!dateregx.test(todate.value)) {
-            // todate.focus()
             document.getElementById(todateerror).innerHTML = 'select date';
             validate = false;
         }
@@ -222,7 +219,7 @@ function ajaxreferencevalidation(name, r_number, relation) {
     const reference_nameerror = name.id + "error";
     const reference_contacterror = r_number.id + "error"
     const reference_relationerror = relation.id + "error";
-    if (emptyreg.test(name.value) || emptyreg.test(r_number.value) || emptyreg.test(relation.value)) {
+    if (name.value != '' || r_number.value != '' || relation.value != '') {
 
         if (!namereg.test(name.value)) {
             name.focus()
@@ -235,7 +232,6 @@ function ajaxreferencevalidation(name, r_number, relation) {
         }
 
         if (!namereg.test(relation.value)) {
-            // relation.focus();
             document.getElementById(reference_relationerror).innerHTML = 'Relation empty or other than character';
             validate = false;
         }
@@ -250,8 +246,8 @@ function ajaxpreferencevalidation() {
     const expacted_ctc = document.getElementById('expacted_ctc')
     const current_ctc = document.getElementById('current_ctc')
     const p_department = document.getElementById('p_department')
-
-    if (!namereg.test(p_location.value)) {
+    console.log(p_location.value)
+    if (p_location.value == '') {
         p_location.focus()
         document.getElementById('p_locationerror').innerHTML = 'select Location';
         validate = false;
@@ -280,6 +276,7 @@ function ajaxpreferencevalidation() {
 }
 
 function ajaxvalidateform() {
+    validate = true
     const fname = document.getElementById('fname').value;
     const lname = document.getElementById('lname').value;
     const designation = document.getElementById('designation').value;
@@ -318,76 +315,76 @@ function ajaxvalidateform() {
     }
 
 
-    // if (current_page == 1) {
+    if (current_page == 1) {
 
-    if (fnamereg.test(fname) == false) {
-        document.getElementById('fnameerror').innerHTML = 'First Name is Empty or other than character';
-        document.getElementById('fname').focus()
-        validate = false
-    }
-    if (!fnamereg.test(lname)) {
-        document.getElementById('lnameerror').innerHTML = 'Lastname Name is Empty or other than character';
-        document.getElementById('lname').focus()
-        validate = false
-    }
-    if (!emptyreg.test(designation)) {
-        document.getElementById('designationerror').innerHTML = 'Designation is Empty';
-        document.getElementById('designation').focus()
-        validate = false
-    }
-    if (add1 == "") {
-        document.getElementById('add1error').innerHTML = 'Address is Empty';
-        document.getElementById('add1').focus()
-        validate = false
-    }
-    if (!emailregx.test(email)) {
-        document.getElementById('emailerror').innerHTML = 'Enter Valid Email';
-        document.getElementById('email').focus()
-        validate = false
-    }
-    if (state == "") {
-        document.getElementById('stateerror').innerHTML = 'Select State';
-        document.getElementById('state').focus()
-        validate = false
-    }
-    if (!fnamereg.test(city)) {
-        document.getElementById('cityerror').innerHTML = 'City is Empty or other than character'
-        document.getElementById('city').focus()
-        validate = false
-    }
-    if (!phonenoregx.test(phoneno)) {
-        document.getElementById('phonenoerror').innerHTML = 'Phone number should be 10 digit only'
-        document.getElementById('phoneno').focus()
-        validate = false
-    }
+        if (fnamereg.test(fname) == false) {
+            document.getElementById('fnameerror').innerHTML = 'First Name is Empty or other than character not contain space';
+            document.getElementById('fname').focus()
+            validate = false
+        }
+        if (!fnamereg.test(lname)) {
+            document.getElementById('lnameerror').innerHTML = 'Lastname Name is Empty or other than character not contain space';
+            document.getElementById('lname').focus()
+            validate = false
+        }
+        if (!emptyreg.test(designation)) {
+            document.getElementById('designationerror').innerHTML = 'Designation is Empty not contain space';
+            document.getElementById('designation').focus()
+            validate = false
+        }
+        if (add1 == "") {
+            document.getElementById('add1error').innerHTML = 'Address is Empty';
+            document.getElementById('add1').focus()
+            validate = false
+        }
+        if (!emailregx.test(email)) {
+            document.getElementById('emailerror').innerHTML = 'Enter Valid Email ';
+            document.getElementById('email').focus()
+            validate = false
+        }
+        if (state == "") {
+            document.getElementById('stateerror').innerHTML = 'Select State';
+            document.getElementById('state').focus()
+            validate = false
+        }
+        if (!fnamereg.test(city)) {
+            document.getElementById('cityerror').innerHTML = 'City is Empty or other than character not contain space'
+            document.getElementById('city').focus()
+            validate = false
+        }
+        if (!phonenoregx.test(phoneno)) {
+            document.getElementById('phonenoerror').innerHTML = 'Phone number should be 10 digit only'
+            document.getElementById('phoneno').focus()
+            validate = false
+        }
 
-    if (!pincoderegx.test(pincode)) {
-        document.getElementById('pincodeerror').innerHTML = 'empty pincode it should be 6 digit only'
-        document.getElementById('pincode').focus()
-        validate = false
-    }
-    if (!dateregx.test(dob)) {
-        document.getElementById('doberror').innerHTML = 'dob is empty or in invalid format'
-        document.getElementById('dob').focus()
-        validate = false
-    }
-    if (male.checked == false && female.checked == false) {
-        document.getElementById('gendererror').innerHTML = 'Select Gender'
-        validate = false
-        if (male.checked == true && female.checked == false || male.checked == false && female.checked == true) {
+        if (!pincoderegx.test(pincode)) {
+            document.getElementById('pincodeerror').innerHTML = 'empty pincode it should be 6 digit only'
+            document.getElementById('pincode').focus()
+            validate = false
+        }
+        if (!dateregx.test(dob)) {
+            document.getElementById('doberror').innerHTML = 'dob is empty or in invalid format'
+            document.getElementById('dob').focus()
+            validate = false
+        }
+        if (male.checked == false && female.checked == false) {
+            document.getElementById('gendererror').innerHTML = 'Select Gender'
+            validate = false
+            if (male.checked == true && female.checked == false || male.checked == false && female.checked == true) {
+                document.getElementById('gendererror').innerHTML = ''
+            }
+        }
+        else {
             document.getElementById('gendererror').innerHTML = ''
         }
     }
-    else {
-        document.getElementById('gendererror').innerHTML = ''
+    if (current_page == 2) {
+        ajaxsscvalidation();
+        ajaxhscvalidation();
+        ajaxbechlorevalidation();
+        ajaxmastervalidation();
     }
-    // }
-    // if (current_page == 2) {
-    ajaxsscvalidation();
-    ajaxhscvalidation();
-    ajaxbechlorevalidation();
-    ajaxmastervalidation();
-    // }
 
     if (current_page == 3) {
         for (let i = 0; i < company.length; i++) {
@@ -395,11 +392,11 @@ function ajaxvalidateform() {
         }
     }
 
-    // if (current_page == 5) {
-    for (let r = 0; r < reference_name.length; r++) {
-        ajaxreferencevalidation(reference_name[r], reference_contact[r], reference_relation[r]);
+    if (current_page == 5) {
+        for (let r = 0; r < reference_name.length; r++) {
+            ajaxreferencevalidation(reference_name[r], reference_contact[r], reference_relation[r]);
+        }
     }
-    // }
 
     if (current_page == 4) {
 
@@ -419,13 +416,10 @@ function ajaxvalidateform() {
     if (current_page == 6) {
         ajaxpreferencevalidation();
     }
-
+    console.log("check validation " + validate)
     if (validate == false) {
-        validate = false
+        return false
     }
-    else {
-        validate = true
-    }
-
+    console.log("check validation after " + validate)
     return validate;
 }

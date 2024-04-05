@@ -103,12 +103,12 @@ function language(data, res, lastindex) {
 
   let { languages, language1ability, language2ability, language3ability } = data
   return new Promise((resolve, reject) => {
-    abilitys = [language1ability, language2ability, language3ability]
+    let abilitys = [language1ability, language2ability, language3ability]
     console.log(language1ability)
     for (let language = 0; language < languages.length; language++) {
       for (let ability = 0; ability < abilitys[language].length; ability++) {
         var insert_language = `insert into language(emp_id,lan_name,ability) value(?,?,?)`;
-        con.query(insert_language,[lastindex,languages[language],abilitys[language][ability]],(error) => {
+        con.query(insert_language, [lastindex, languages[language], abilitys[language][ability]], (error) => {
           if (error) {
             console.log(error)
             res.send("Error in inserting Data")
@@ -126,11 +126,11 @@ function language(data, res, lastindex) {
 function technology(data, res, lastindex) {
   return new Promise((resolve, reject) => {
     let { technologys, technology1ability, technology2ability, technology3ability, technology4ability } = data
-    abilitys = [technology1ability, technology2ability, technology3ability, technology4ability]
+    let abilitys = [technology1ability, technology2ability, technology3ability, technology4ability]
     abilitys = abilitys.filter((ability) => ability != null && ability != undefined)
     for (let tech = 0; tech < technologys.length; tech++) {
       var insert_reference = `insert into technologies(emp_id,tech_name,ability) value(${lastindex},'${technologys[tech]}','${abilitys[tech]}')`;
-      con.query(insert_reference,[lastindex,technologys[tech],abilitys[tech]], (error) => {
+      con.query(insert_reference, [lastindex, technologys[tech], abilitys[tech]], (error) => {
         if (error) {
           console.log(error)
           res.send("Error in inserting Data")
