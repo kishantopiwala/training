@@ -65,11 +65,9 @@ function update_work(data) {
     }
     for (i = 0; i < companys.length; i++) {
       let query = `update work_experiance set company_name = ? ,designation = ?,from_date = ?,to_date = ? where id =${workid[i]} and emp_id= ${emp_id};`
-
+      console.log(workid)
       if (!workid[i]) {
-
         query = `insert into work_experiance(emp_id,company_name,designation,from_date,to_date) value(${emp_id},?,?,?,?)`;
-
       }
       console.log(query)
       con.query(query, [companys[i], workdesignation[i], fromdates[i], todates[i]], (error) => {
@@ -150,20 +148,19 @@ function update_technologies(data) {
 
 // update reference_contact
 function update_reference_contact(data) {
-  console.log("reference")
+
   let { ref_id, emp_id, reference_names, reference_contacts, reference_relations } = data
   ref_id = ref_id.filter((reference_id) => reference_id.length > 1)
   reference_names = reference_names.filter((reference_name) => reference_name.length > 1)
   reference_contacts = reference_contacts.filter((reference_contact) => reference_contact.length > 1)
   reference_relations = reference_relations.filter((reference_relation) => reference_relation.length > 1)
   return new Promise((resolve, reject) => {
-    if (!ref_id.length) {
+    if (!reference_names.length) {
       return resolve()
     }
     console.log("reference contact")
-    for (let i = 0; i < ref_id.length; i++) {
+    for (let i = 0; i < reference_names.length; i++) {
       let query = `update reference_contact set ref_name = ? ,ref_contact_number = ?,reference_relation = ? where id =${ref_id[i]} and emp_id= ${emp_id};`
-      console.log(ref_id)
       if (!ref_id[i]) {
         query = `insert into reference_contact(emp_id,ref_name,ref_contact_number,reference_relation) value(${emp_id},?,?,?)`;
       }
@@ -183,15 +180,16 @@ function update_reference_contact(data) {
 // preference detail update
 function update_preference(data) {
   console.log("preference")
+  console.log(data)
   let { emp_id, p_location, notice_period, expacted_ctc, current_ctc, p_department } = data
-  let insert_reference = `insert into preferences(emp_id,pref_city,expected_ctc,current_ctc,notice_period,pref_department) value(${emp_id},'${p_location}' ,${expacted_ctc},${current_ctc},${notice_period},'${p_department}')`;
-  let query = `update preferences set pref_city =?, expected_ctc=?,current_ctc=?,notice_period=?,pref_department=? where emp_id = ?`;
-
-  if (!p_location) {
-    query = insert_reference
+  console.log(p_location, notice_period, expacted_ctc, current_ctc, p_department)
+  let query = `update preferences set pref_city =?, expected_ctc=?,current_ctc=?,notice_period=?,pref_department=? where emp_id = ${emp_id}`;
+  if(!p_location) {
+    query = `insert into preferences(emp_id,pref_city,expected_ctc,current_ctc,notice_period,pref_department) value(${emp_id},?,?,?,?,?)`;
   }
+  console.log(query)
   return new Promise((resolve, reject) => {
-    con.query(query, [p_location, expacted_ctc, current_ctc, notice_period, p_department, Number(emp_id),], (error) => {
+    con.query(query, [p_location, expacted_ctc, current_ctc, notice_period, p_department], (error) => {
       if (error) {
         console.log(error)
         return reject(error)

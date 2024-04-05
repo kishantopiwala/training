@@ -125,11 +125,11 @@ function ajaxcompanyvalidation(compnayname, designaion, fromdate, todate) {
         }
 
         if (!dateregx.test(fromdate.value)) {
-            document.getElementById(fromdateerror).innerHTML = 'select date';
+            document.getElementById(fromdateerror).innerHTML = 'Enter valid date';
             validate = false;
         }
         if (!dateregx.test(todate.value)) {
-            document.getElementById(todateerror).innerHTML = 'select date';
+            document.getElementById(todateerror).innerHTML = 'Enter valid date';
             validate = false;
         }
 
@@ -255,7 +255,7 @@ function ajaxpreferencevalidation() {
 
     if (!noticeperiodregx.test(notice_period.value)) {
         notice_period.focus();
-        document.getElementById('notice_perioderror').innerHTML = 'Notice Period is Empty or invalid ';
+        document.getElementById('notice_perioderror').innerHTML = 'Notice Period is Empty or only number up 1-12';
         validate = false;
     }
 
@@ -359,7 +359,7 @@ function ajaxvalidateform() {
         }
 
         if (!pincoderegx.test(pincode)) {
-            document.getElementById('pincodeerror').innerHTML = 'empty pincode it should be 6 digit only'
+            document.getElementById('pincodeerror').innerHTML = 'empty pincode should be 6 digit only'
             document.getElementById('pincode').focus()
             validate = false
         }
