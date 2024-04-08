@@ -1,6 +1,6 @@
 const emptyreg = /^\S+$/;
 const percentageregx = /^[0-9]{1,3}$/;
-const year = /^[0-9]{4}$/;
+const year = /^(19|20)\d{2}$/
 const fnamereg = /^[a-zA-Z]+$/;
 const dateregx = /^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$/
 const namereg = /^[a-zA-Z]+$/;
@@ -24,7 +24,7 @@ function ajaxsscvalidation() {
             validate = false;
         }
         if (!year.test(sscpassingyear)) {
-            document.getElementById('sscpassingyearerror').innerHTML = 'ssc Passing Year is Empty or it should be only 4 digit number';
+            document.getElementById('sscpassingyearerror').innerHTML = 'ssc Passing Year is Empty or it should be only 4 digit number under 2099';
             document.getElementById('sscpassingyear').focus();
             validate = false;
         }
@@ -48,7 +48,7 @@ function ajaxhscvalidation() {
             validate = false;
         }
         if (!year.test(hscpassingyear)) {
-            document.getElementById('hscpassingyearerror').innerHTML = 'hsc Passing Year is Empty or it should be only 4 digit number';
+            document.getElementById('hscpassingyearerror').innerHTML = 'hsc Passing Year is Empty or it should be only 4 digit number under 2099';
             document.getElementById('hscpassingyear').focus();
             validate = false;
         }
@@ -71,7 +71,7 @@ function ajaxbechlorevalidation() {
             validate = false;
         }
         if (!year.test(b_passingyear)) {
-            document.getElementById('b_passingyearerror').innerHTML = 'bechlor Passing Year is Empty or it should be only 4 digit number';
+            document.getElementById('b_passingyearerror').innerHTML = 'bechlor Passing Year is Empty or it should be only 4 digit number under 2099';
             document.getElementById('b_passingyear').focus();
             validate = false;
         }
@@ -95,7 +95,7 @@ function ajaxmastervalidation() {
             validate = false;
         }
         if (!year.test(m_passingyear)) {
-            document.getElementById('m_passingyearerror').innerHTML = 'Master Passing Year is Empty or it should be only 4 digit number';
+            document.getElementById('m_passingyearerror').innerHTML = 'Master Passing Year is Empty or it should be only 4 digit number under 2099';
             document.getElementById('m_passingyear').focus();
             validate = false;
         }
@@ -223,7 +223,7 @@ function ajaxreferencevalidation(name, r_number, relation) {
 
         if (!namereg.test(name.value)) {
             name.focus()
-            document.getElementById(reference_nameerror).innerHTML = ' name is Empty or other than character';
+            document.getElementById(reference_nameerror).innerHTML = ' name should not contain white space or special character or number';
             validate = false;
         }
         if (!phonenoregx.test(r_number.value)) {
@@ -232,7 +232,7 @@ function ajaxreferencevalidation(name, r_number, relation) {
         }
 
         if (!namereg.test(relation.value)) {
-            document.getElementById(reference_relationerror).innerHTML = 'Relation empty or other than character';
+            document.getElementById(reference_relationerror).innerHTML = 'Relation should not contain white space or special character or number';
             validate = false;
         }
     }
@@ -318,12 +318,12 @@ function ajaxvalidateform() {
     if (current_page == 1) {
 
         if (fnamereg.test(fname) == false) {
-            document.getElementById('fnameerror').innerHTML = 'First Name is Empty or other than character not contain space';
+            document.getElementById('fnameerror').innerHTML = 'First should not contain white space or special character or number';
             document.getElementById('fname').focus()
             validate = false
         }
         if (!fnamereg.test(lname)) {
-            document.getElementById('lnameerror').innerHTML = 'Lastname Name is Empty or other than character not contain space';
+            document.getElementById('lnameerror').innerHTML = 'should not contain white space or special character or number';
             document.getElementById('lname').focus()
             validate = false
         }
@@ -348,7 +348,7 @@ function ajaxvalidateform() {
             validate = false
         }
         if (!fnamereg.test(city)) {
-            document.getElementById('cityerror').innerHTML = 'City is Empty or other than character not contain space'
+            document.getElementById('cityerror').innerHTML = 'City should not contain white space or special character or number'
             document.getElementById('city').focus()
             validate = false
         }

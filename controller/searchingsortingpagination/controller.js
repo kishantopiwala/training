@@ -214,7 +214,6 @@ const dlimitersearch = (req, res) => {
     let start = 0;
     let recordsinonepage = 50;
     if (search != null) {
-
         let fnamesymbol = [];
         let lnamesymbol = [];
         let emailsymbol = [];

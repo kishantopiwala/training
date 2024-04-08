@@ -88,7 +88,7 @@
             [1,5,9],
             [7,5,3]
         ]
-        var cells = document.getElementsByClassName('col')
+        let cells = document.getElementsByClassName('col')
 
         for (let i = 0; i < cells.length; i++) {
             // console.log(typeof (i))
@@ -97,7 +97,7 @@
 
 
         function fillcell() {
-            var cell = event.target.id;
+            let cell = event.target.id;
             // console.log(typeof(cell));
             if (currentplayer == "X") {
                 document.getElementById(cell).innerHTML = "X"

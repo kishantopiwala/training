@@ -17,7 +17,7 @@ const { ajax_jobform,
     ajax_showemployees,
     ajax_getemployeedetail,
     ajax_updateemployee,
-    ajax_renderemployee,} = require('./controller/ajaxjobform/controller')
+    ajax_renderemployee, } = require('./controller/ajaxjobform/controller')
 
 const { viewposts, specificpost } = require('./controller/apicall/controller')
 

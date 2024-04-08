@@ -1,26 +1,26 @@
 const { con } = require('../../connection.js');
 
 function select_basic_details(emp_id) {
-  
-  var basic_details = 'select * from basic_details where emp_id = ?'
+
+  let basic_details = 'select * from basic_details where emp_id = ?'
   return new Promise((resolve, reject) => {
     con.query(basic_details, [emp_id], (error, result) => {
       if (error) {
-        reject(error)
+        return reject(error)
       } else {
-        resolve(result)
+        return resolve(result)
       }
     })
   })
 }
 
 function select_education_details(emp_id) {
-  
-  var education_detail = 'select * from education where emp_id = ?'
+
+  let education_detail = 'select * from education where emp_id = ?'
   return new Promise((resolve, reject) => {
     con.query(education_detail, [emp_id], (error, result) => {
       if (error) {
-        reject(error)
+        return reject(error)
       } else {
         id = result.map(obj => {
           return obj.id;
@@ -41,8 +41,8 @@ function select_education_details(emp_id) {
 }
 
 function select_work_details(emp_id) {
-  
-  var work_experiance = 'select id,emp_id,company_name,designation,from_date,to_date from work_experiance where emp_id = ?'
+
+  let work_experiance = 'select id,emp_id,company_name,designation,from_date,to_date from work_experiance where emp_id = ?'
   return new Promise((resolve, reject) => {
     con.query(work_experiance, [emp_id], (error, result) => {
       if (error) {
@@ -78,12 +78,12 @@ function select_work_details(emp_id) {
 }
 
 function select_reference_contacts(emp_id) {
-  
-  var reference_contact = 'select id,emp_id,ref_name,ref_contact_number,reference_relation from reference_contact where emp_id = ?'
+
+  let reference_contact = 'select id,emp_id,ref_name,ref_contact_number,reference_relation from reference_contact where emp_id = ?'
   return new Promise((resolve, reject) => {
     con.query(reference_contact, [emp_id], (error, result) => {
       if (error) {
-        reject(error)
+        return reject(error)
       } else {
         ref_id = result.map(obj => {
           return obj.id
@@ -104,12 +104,12 @@ function select_reference_contacts(emp_id) {
 }
 
 function select_languages(emp_id) {
-  
-  var language = 'select * from language where emp_id = ?'
+
+  let language = 'select * from language where emp_id = ?'
   return new Promise((resolve, reject) => {
     con.query(language, [emp_id], (error, result) => {
       if (error) {
-        reject(error)
+        return reject(error)
       } else {
 
         const lanuages = result.reduce((accumulator, item) => {
@@ -126,13 +126,13 @@ function select_languages(emp_id) {
   })
 }
 function select_technologies(emp_id) {
-  
-  var technologiequery = 'select * from technologies where emp_id = ?'
+
+  let technologiequery = 'select * from technologies where emp_id = ?'
   return new Promise((resolve, reject) => {
 
     con.query(technologiequery, [emp_id], (error, result) => {
       if (error) {
-        reject(error)
+        return reject(error)
       } else {
         const techid = result.map((obj) => {
           return obj.tech_id
@@ -150,8 +150,8 @@ function select_technologies(emp_id) {
   })
 }
 function select_preferences(emp_id) {
-  
-  var preference = 'select * from preferences where emp_id = ?'
+
+  let preference = 'select * from preferences where emp_id = ?'
   return new Promise((resolve, reject) => {
     con.query(preference, [emp_id], (error, result) => {
       if (error) {

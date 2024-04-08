@@ -26,7 +26,7 @@ function update_education(data) {
     course_name = course_name.filter((course) => course.length > 1)
     passingyear = passingyear.filter((year) => year.length > 1)
     percentage = percentage.filter((percent) => percent > 0)
-    if (!edu_id.length) {
+    if (!course_name.length) {
       return resolve()
     }
     for (let i = 0; i < course_name.length; i++) {
@@ -37,6 +37,7 @@ function update_education(data) {
       if (!edu_id[i]) {
         query = insert_education_details
       }
+      console.log(query)
       con.query(query, [course_name[i], Number(passingyear[i]), Number(percentage[i])], (error) => {
         if (error) {
           console.log(error)
@@ -184,7 +185,7 @@ function update_preference(data) {
   let { emp_id, p_location, notice_period, expacted_ctc, current_ctc, p_department } = data
   console.log(p_location, notice_period, expacted_ctc, current_ctc, p_department)
   let query = `update preferences set pref_city =?, expected_ctc=?,current_ctc=?,notice_period=?,pref_department=? where emp_id = ${emp_id}`;
-  if(!p_location) {
+  if (!notice_period) {
     query = `insert into preferences(emp_id,pref_city,expected_ctc,current_ctc,notice_period,pref_department) value(${emp_id},?,?,?,?,?)`;
   }
   console.log(query)

@@ -14,7 +14,7 @@ const { updatebasic_details, update_education, update_work, update_lanugages, up
 } = require("../commonFunction/employeeupdatefunction.js");
 
 function job_submitform(req, res) {
-    let insert_basic_details = `insert into basic_details(first_name,last_name,email,add1,add2,phone_number,relation_status,dob,state,city,pincode,designation,gender)
+    const insert_basic_details = `insert into basic_details(first_name,last_name,email,add1,add2,phone_number,relation_status,dob,state,city,pincode,designation,gender)
       values(?,?,?,?,?,?,?,?,?,?,?,?,?) `;
     console.log(req.body)
     basic_details(insert_basic_details, req.body).then((lastindex) => {
@@ -33,7 +33,7 @@ function job_submitform(req, res) {
 }
 
 function showemployees(req, res) {
-    var selectemployee = 'select emp_id,first_name,last_name,email,add1 from basic_details'
+    const selectemployee = 'select emp_id,first_name,last_name,email,add1 from basic_details'
     try {
         con.query(selectemployee, (error, row, col) => {
             if (error) {
@@ -49,15 +49,15 @@ function showemployees(req, res) {
 }
 
 async function getemployeedetail(req, res) {
-    var emp_id = req.params.emp_id;
-    var result;
-    var basic = await select_basic_details(emp_id);
-    var education = await select_education_details(emp_id);
-    var work = await select_work_details(emp_id);
-    var lang = await select_languages(emp_id);
-    var ref = await select_reference_contacts(emp_id);
-    var tech = await select_technologies(emp_id);
-    var pref = await select_preferences(emp_id);
+    let emp_id = req.params.emp_id;
+    let result;
+    let basic = await select_basic_details(emp_id);
+    let education = await select_education_details(emp_id);
+    let work = await select_work_details(emp_id);
+    let lang = await select_languages(emp_id);
+    let ref = await select_reference_contacts(emp_id);
+    let tech = await select_technologies(emp_id);
+    let pref = await select_preferences(emp_id);
 
     result = basic[0];
     result["education_id"] = education.id;

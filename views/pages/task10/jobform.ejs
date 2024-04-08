@@ -497,11 +497,11 @@
                         <% for (let tech=0; tech < result.technames.length; tech++) {%>
                             <script>
                                 var technologys = document.getElementsByName('technologys');
-                                var technology1ability = document.getElementsByName('technology1ability');
                                 technologys["<%=tech%>"].checked = true;
                                 for (let tech1 = 0; tech1 < 3; tech1++) {
-                                    if (document.getElementsByName(`technology${tech1 + 1}ability`)[tech1].value == "<%=result.techability[tech]%>") {
-                                        document.getElementsByName(`technology${tech1 + 1}ability`)[tech1].checked = true
+                                    console.log(document.getElementsByName(`technology<%=tech +1 %>ability`)[tech1].value == "<%=result.techability[tech]%>")
+                                    if (document.getElementsByName(`technology<%=tech +1 %>ability`)[tech1].value == "<%=result.techability[tech]%>") {
+                                        document.getElementsByName(`technology<%=tech +1 %>ability`)[tech1].checked = true
                                     }
                                 }
 

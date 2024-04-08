@@ -24,6 +24,8 @@ function ajax_submitform(req, res) {
     language(req.body, res, lastindex);
     technology(req.body, res, lastindex);
     res.redirect("/task12/employees");
+  }).catch((error) => {
+    console.log(error)
   });
 }
 
